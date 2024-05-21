@@ -19,7 +19,7 @@ voice_1.wav|Hestia|JP|炎は燃え続け、照らし続ける!
 ```
 
 # Features
-- [X]  Drag and drop .list files into the application to load, OR, go to [File > Load dataset] then find and select the .list file
+- [X]  Drag and drop `.list` files into the application to load, OR, go to [File > Load dataset] then find and select the .list file
 - [X]  Edit lines and click save next to the transcription to save individual transcriptions
 - [X]  Save all transcriptions on the current page with the Save button at the top
 - [X]  Change how many items are shown per page in the settings
