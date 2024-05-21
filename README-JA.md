@@ -1,5 +1,7 @@
 # VoiceDatasetEditor
 
+[English]()
+
 Voice Dataset Editorは、音声～テキストデータセットを編集するためのシンプルなプログラムです。
 
 ![ユーザーインターフェース](./Examples/UI.png)
