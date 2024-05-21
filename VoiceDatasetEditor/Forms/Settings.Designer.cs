@@ -106,6 +106,7 @@
             MinimizeBox = false;
             MinimumSize = new Size(302, 175);
             Name = "Settings";
+            ShowIcon = false;
             SizeGripStyle = SizeGripStyle.Hide;
             Text = "Settings";
             TopMost = true;

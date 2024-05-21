@@ -55,6 +55,7 @@
             // 
             toolStrip1.BackColor = SystemColors.Control;
             toolStrip1.Font = new Font("Segoe UI", 11.7818184F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            toolStrip1.GripStyle = ToolStripGripStyle.Hidden;
             toolStrip1.ImageScalingSize = new Size(18, 18);
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolstripFile, toolstripEdit, toolstripView, toolstripLanguage, toolstripSettings });
             toolStrip1.Location = new Point(0, 0);
