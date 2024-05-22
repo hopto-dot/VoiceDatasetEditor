@@ -36,6 +36,8 @@
             btnClose = new Button();
             lblResizeEntries = new Label();
             cbResizeEntries = new CheckBox();
+            cbbVolumeBoost = new ComboBox();
+            lblVolumeBoost = new Label();
             SuspendLayout();
             // 
             // lblItemsPerPage
@@ -52,7 +54,7 @@
             // 
             tbxItemsPerPage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             tbxItemsPerPage.Font = new Font("Segoe UI", 9.818182F);
-            tbxItemsPerPage.Location = new Point(182, 46);
+            tbxItemsPerPage.Location = new Point(226, 46);
             tbxItemsPerPage.Name = "tbxItemsPerPage";
             tbxItemsPerPage.Size = new Size(139, 27);
             tbxItemsPerPage.TabIndex = 1;
@@ -68,7 +70,7 @@
             cbbLanguage.FormattingEnabled = true;
             cbbLanguage.IntegralHeight = false;
             cbbLanguage.Items.AddRange(new object[] { "EN", "JP" });
-            cbbLanguage.Location = new Point(182, 11);
+            cbbLanguage.Location = new Point(226, 11);
             cbbLanguage.Name = "cbbLanguage";
             cbbLanguage.Size = new Size(139, 28);
             cbbLanguage.TabIndex = 2;
@@ -86,7 +88,7 @@
             // btnSave
             // 
             btnSave.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnSave.Location = new Point(238, 148);
+            btnSave.Location = new Point(282, 159);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(83, 30);
             btnSave.TabIndex = 4;
@@ -96,7 +98,7 @@
             // 
             // btnClose
             // 
-            btnClose.Location = new Point(12, 221);
+            btnClose.Location = new Point(12, 249);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(86, 26);
             btnClose.TabIndex = 5;
@@ -118,11 +120,34 @@
             // 
             cbResizeEntries.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cbResizeEntries.AutoSize = true;
-            cbResizeEntries.Location = new Point(182, 89);
+            cbResizeEntries.Location = new Point(226, 89);
             cbResizeEntries.Name = "cbResizeEntries";
             cbResizeEntries.Size = new Size(15, 14);
             cbResizeEntries.TabIndex = 7;
             cbResizeEntries.UseVisualStyleBackColor = true;
+            // 
+            // cbbVolumeBoost
+            // 
+            cbbVolumeBoost.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            cbbVolumeBoost.AutoCompleteCustomSource.AddRange(new string[] { "0.75", "1", "1.5", "2", "2.5", "3" });
+            cbbVolumeBoost.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            cbbVolumeBoost.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbbVolumeBoost.FormattingEnabled = true;
+            cbbVolumeBoost.Items.AddRange(new object[] { "0.5", "1.0", "1.5", "2.0", "2.5", "3.0" });
+            cbbVolumeBoost.Location = new Point(226, 117);
+            cbbVolumeBoost.Name = "cbbVolumeBoost";
+            cbbVolumeBoost.Size = new Size(139, 27);
+            cbbVolumeBoost.TabIndex = 8;
+            // 
+            // lblVolumeBoost
+            // 
+            lblVolumeBoost.AutoSize = true;
+            lblVolumeBoost.Font = new Font("Segoe UI", 9.818182F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblVolumeBoost.Location = new Point(12, 119);
+            lblVolumeBoost.Name = "lblVolumeBoost";
+            lblVolumeBoost.Size = new Size(203, 20);
+            lblVolumeBoost.TabIndex = 9;
+            lblVolumeBoost.Text = "Playback volume (temporary)";
             // 
             // Settings
             // 
@@ -130,19 +155,21 @@
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnClose;
-            ClientSize = new Size(333, 190);
+            ClientSize = new Size(377, 201);
+            Controls.Add(lblVolumeBoost);
+            Controls.Add(cbbVolumeBoost);
+            Controls.Add(btnSave);
             Controls.Add(cbResizeEntries);
             Controls.Add(lblResizeEntries);
             Controls.Add(btnClose);
-            Controls.Add(btnSave);
             Controls.Add(lblLanguage);
             Controls.Add(cbbLanguage);
             Controls.Add(tbxItemsPerPage);
             Controls.Add(lblItemsPerPage);
             MaximizeBox = false;
-            MaximumSize = new Size(375, 250);
+            MaximumSize = new Size(415, 245);
             MinimizeBox = false;
-            MinimumSize = new Size(302, 175);
+            MinimumSize = new Size(395, 245);
             Name = "Settings";
             ShowIcon = false;
             SizeGripStyle = SizeGripStyle.Hide;
@@ -163,5 +190,7 @@
         private Button btnClose;
         private Label lblResizeEntries;
         private CheckBox cbResizeEntries;
+        private ComboBox cbbVolumeBoost;
+        private Label lblVolumeBoost;
     }
 }

@@ -13,6 +13,8 @@ namespace VoiceDatasetEditor
 
         public bool ResizeEntries = false;
 
+        public decimal VolumeBoost = 1;
+
         private static string _savePath = "";
         public static AppSettings Load(string filePath)
         {
@@ -35,6 +37,13 @@ namespace VoiceDatasetEditor
 
                 if (settings.ItemsPerPage < 1) { settings.ItemsPerPage = 1; }
                 if (settings.ItemsPerPage > 1000) { settings.ItemsPerPage = 1000; }
+
+                double[] validValues = { 0.5, 1, 1.5, 2, 2.5, 3 };
+                if (!Array.Exists(validValues, element => element == (double)settings.VolumeBoost))
+                {
+                    settings.VolumeBoost = (decimal)1;
+                }
+
 
                 return settings;
             }

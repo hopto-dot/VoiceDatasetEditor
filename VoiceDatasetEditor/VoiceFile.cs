@@ -51,7 +51,7 @@ namespace VoiceDatasetEditor
 
             var audioFile = new AudioFileReader(Entry.filepath);
             WaveOutEvent outputDevice = new WaveOutEvent();
-            var volumeProvider = new VolumeSampleProvider(audioFile.ToSampleProvider(), 2f);
+            var volumeProvider = new VolumeSampleProvider(audioFile.ToSampleProvider(), (float)MainForm.Settings.VolumeBoost);
 
             outputDevice.Init(volumeProvider);
             outputDevice.Play();

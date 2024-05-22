@@ -27,6 +27,10 @@ namespace VoiceDatasetEditor.Forms
             int newItemsPerPage;
             itemsPerPageIsNumeric = int.TryParse(tbxItemsPerPage.Text, out newItemsPerPage);
 
+            bool volumeBoostIsNumeric;
+            decimal newVolumeBoost;
+            volumeBoostIsNumeric = decimal.TryParse(cbbVolumeBoost.Text, out newVolumeBoost);
+
             if (itemsPerPageIsNumeric)
             {
                 if (newItemsPerPage <= 1)
@@ -45,6 +49,27 @@ namespace VoiceDatasetEditor.Forms
                 tbxItemsPerPage.Text = MainForm.Settings.ItemsPerPage.ToString();
                 newItemsPerPage = MainForm.Settings.ItemsPerPage;
             }
+
+            if (volumeBoostIsNumeric)
+            {
+                if (newVolumeBoost <= (decimal)0.1)
+                {
+                    newVolumeBoost = (decimal)0.1;
+                    cbbVolumeBoost.Text = "0.5";
+                }
+                else if (newVolumeBoost > 4)
+                {
+                    newVolumeBoost = 4;
+                    cbbVolumeBoost.Text = "4";
+                }
+                MainForm.Settings.VolumeBoost = newVolumeBoost;
+            }
+            else
+            {
+                cbbVolumeBoost.Text = MainForm.Settings.VolumeBoost.ToString();
+                newVolumeBoost = MainForm.Settings.VolumeBoost;
+            }
+
 
             if (cbbLanguage.Text != MainForm.Settings.Language)
             {
@@ -74,6 +99,7 @@ namespace VoiceDatasetEditor.Forms
             cbbLanguage.Text = MainForm.Settings.Language;
             tbxItemsPerPage.Text = MainForm.Settings.ItemsPerPage.ToString();
             cbResizeEntries.Checked = MainForm.Settings.ResizeEntries;
+            cbbVolumeBoost.Text = MainForm.Settings.VolumeBoost.ToString();
 
             Localise();
         }
@@ -86,6 +112,7 @@ namespace VoiceDatasetEditor.Forms
                 lblLanguage.Text = "言語";
                 lblItemsPerPage.Text = "ページ当たりの項目数";
                 lblResizeEntries.Text = "エントリをリサイズ";
+                lblVolumeBoost.Text = "再生音量（一時的）";
 
                 btnSave.Text = "保存";
             }
@@ -95,6 +122,7 @@ namespace VoiceDatasetEditor.Forms
                 lblLanguage.Text = "Language";
                 lblItemsPerPage.Text = "Items per page";
                 lblResizeEntries.Text = "Resize entries";
+                lblVolumeBoost.Text = "Playback volume (temporary)";
 
                 btnSave.Text = "Save";
             }

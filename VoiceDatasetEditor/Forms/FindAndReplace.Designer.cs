@@ -109,6 +109,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnCancel;
             ClientSize = new Size(533, 134);
             Controls.Add(btnReplacePage);
             Controls.Add(btnReplaceAll);
