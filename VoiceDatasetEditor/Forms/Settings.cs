@@ -29,7 +29,8 @@ namespace VoiceDatasetEditor.Forms
 
             if (itemsPerPageIsNumeric)
             {
-                if (newItemsPerPage <= 1)  {
+                if (newItemsPerPage <= 1)
+                {
                     newItemsPerPage = 1;
                     tbxItemsPerPage.Text = "1";
                 }
@@ -44,7 +45,7 @@ namespace VoiceDatasetEditor.Forms
                 tbxItemsPerPage.Text = MainForm.Settings.ItemsPerPage.ToString();
                 newItemsPerPage = MainForm.Settings.ItemsPerPage;
             }
-            
+
             if (cbbLanguage.Text != MainForm.Settings.Language)
             {
                 MainForm.Localise(cbbLanguage.Text);
@@ -87,6 +88,11 @@ namespace VoiceDatasetEditor.Forms
 
                 btnSave.Text = "Save";
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

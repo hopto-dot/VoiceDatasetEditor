@@ -33,6 +33,7 @@
             cbbLanguage = new ComboBox();
             lblLanguage = new Label();
             btnSave = new Button();
+            btnClose = new Button();
             SuspendLayout();
             // 
             // lblItemsPerPage
@@ -91,11 +92,24 @@
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
+            // btnClose
+            // 
+            btnClose.Location = new Point(12, 221);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(86, 26);
+            btnClose.TabIndex = 5;
+            btnClose.Text = "Close";
+            btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += button1_Click;
+            // 
             // Settings
             // 
+            AcceptButton = btnSave;
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnClose;
             ClientSize = new Size(310, 131);
+            Controls.Add(btnClose);
             Controls.Add(btnSave);
             Controls.Add(lblLanguage);
             Controls.Add(cbbLanguage);
@@ -122,5 +136,6 @@
         private ComboBox cbbLanguage;
         private Label lblLanguage;
         private Button btnSave;
+        private Button btnClose;
     }
 }

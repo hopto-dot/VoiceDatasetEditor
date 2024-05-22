@@ -52,7 +52,7 @@
             tbxTranscription.Location = new Point(89, 16);
             tbxTranscription.MaxLength = 5000;
             tbxTranscription.Name = "tbxTranscription";
-            tbxTranscription.Size = new Size(800, 35);
+            tbxTranscription.Size = new Size(806, 35);
             tbxTranscription.TabIndex = 1;
             tbxTranscription.WordWrap = false;
             tbxTranscription.TextChanged += tbxTranscription_TextChanged;
@@ -61,7 +61,7 @@
             // 
             btnSave.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnSave.Font = new Font("Segoe UI", 9.818182F);
-            btnSave.Location = new Point(895, 16);
+            btnSave.Location = new Point(901, 16);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(86, 35);
             btnSave.TabIndex = 2;
@@ -87,7 +87,7 @@
             Controls.Add(btnPlay);
             Controls.Add(lblLength);
             Name = "VoiceFile";
-            Size = new Size(995, 68);
+            Size = new Size(990, 68);
             Load += VoiceFile_Load;
             ResumeLayout(false);
             PerformLayout();
