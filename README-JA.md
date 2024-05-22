@@ -4,7 +4,9 @@
 
 Voice Dataset Editorは、音声テキストデータセットを編集するためのシンプルなプログラムです。
 
-![ユーザーインターフェース](./Examples/UI.png)
+[最新リリースはこちら](https://github.com/hopto-dot/VoiceDatasetEditor/releases/latest)
+
+![最新リリースはこちら](./Examples/UI.png)
 
 Voice Dataset Editorは、以下の形式の`.list`ファイルをサポートしています:
 ```
