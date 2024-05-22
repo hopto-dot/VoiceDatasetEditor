@@ -55,6 +55,13 @@ namespace VoiceDatasetEditor.Forms
                 MainForm.Settings.ItemsPerPage = newItemsPerPage;
                 MainForm.LoadFirstPage();
             }
+            else if (cbResizeEntries.Checked != MainForm.Settings.ResizeEntries) // <- note else if
+            {
+                MainForm.Settings.ResizeEntries = cbResizeEntries.Checked;
+                MainForm.LoadFirstPage();
+            }
+
+            MainForm.Settings.ResizeEntries = cbResizeEntries.Checked;
 
             MainForm.Settings.Language = cbbLanguage.Text;
             MainForm.Settings.Save();
@@ -66,6 +73,7 @@ namespace VoiceDatasetEditor.Forms
         {
             cbbLanguage.Text = MainForm.Settings.Language;
             tbxItemsPerPage.Text = MainForm.Settings.ItemsPerPage.ToString();
+            cbResizeEntries.Checked = MainForm.Settings.ResizeEntries;
 
             Localise();
         }
@@ -77,6 +85,7 @@ namespace VoiceDatasetEditor.Forms
                 Text = "設定";
                 lblLanguage.Text = "言語";
                 lblItemsPerPage.Text = "ページ当たりの項目数";
+                lblResizeEntries.Text = "エントリをリサイズ";
 
                 btnSave.Text = "保存";
             }
@@ -85,6 +94,7 @@ namespace VoiceDatasetEditor.Forms
                 Text = "Settings";
                 lblLanguage.Text = "Language";
                 lblItemsPerPage.Text = "Items per page";
+                lblResizeEntries.Text = "Resize entries";
 
                 btnSave.Text = "Save";
             }

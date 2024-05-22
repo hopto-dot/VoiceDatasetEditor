@@ -34,6 +34,8 @@
             lblLanguage = new Label();
             btnSave = new Button();
             btnClose = new Button();
+            lblResizeEntries = new Label();
+            cbResizeEntries = new CheckBox();
             SuspendLayout();
             // 
             // lblItemsPerPage
@@ -50,7 +52,7 @@
             // 
             tbxItemsPerPage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             tbxItemsPerPage.Font = new Font("Segoe UI", 9.818182F);
-            tbxItemsPerPage.Location = new Point(159, 46);
+            tbxItemsPerPage.Location = new Point(182, 46);
             tbxItemsPerPage.Name = "tbxItemsPerPage";
             tbxItemsPerPage.Size = new Size(139, 27);
             tbxItemsPerPage.TabIndex = 1;
@@ -66,7 +68,7 @@
             cbbLanguage.FormattingEnabled = true;
             cbbLanguage.IntegralHeight = false;
             cbbLanguage.Items.AddRange(new object[] { "EN", "JP" });
-            cbbLanguage.Location = new Point(159, 11);
+            cbbLanguage.Location = new Point(182, 11);
             cbbLanguage.Name = "cbbLanguage";
             cbbLanguage.Size = new Size(139, 28);
             cbbLanguage.TabIndex = 2;
@@ -84,7 +86,7 @@
             // btnSave
             // 
             btnSave.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnSave.Location = new Point(215, 89);
+            btnSave.Location = new Point(238, 117);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(83, 30);
             btnSave.TabIndex = 4;
@@ -102,13 +104,35 @@
             btnClose.UseVisualStyleBackColor = true;
             btnClose.Click += button1_Click;
             // 
+            // lblResizeEntries
+            // 
+            lblResizeEntries.AutoSize = true;
+            lblResizeEntries.Font = new Font("Segoe UI", 9.818182F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblResizeEntries.Location = new Point(12, 84);
+            lblResizeEntries.Name = "lblResizeEntries";
+            lblResizeEntries.Size = new Size(99, 20);
+            lblResizeEntries.TabIndex = 6;
+            lblResizeEntries.Text = "Resize entries";
+            // 
+            // cbResizeEntries
+            // 
+            cbResizeEntries.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            cbResizeEntries.AutoSize = true;
+            cbResizeEntries.Location = new Point(182, 89);
+            cbResizeEntries.Name = "cbResizeEntries";
+            cbResizeEntries.Size = new Size(15, 14);
+            cbResizeEntries.TabIndex = 7;
+            cbResizeEntries.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             AcceptButton = btnSave;
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnClose;
-            ClientSize = new Size(310, 131);
+            ClientSize = new Size(333, 159);
+            Controls.Add(cbResizeEntries);
+            Controls.Add(lblResizeEntries);
             Controls.Add(btnClose);
             Controls.Add(btnSave);
             Controls.Add(lblLanguage);
@@ -137,5 +161,7 @@
         private Label lblLanguage;
         private Button btnSave;
         private Button btnClose;
+        private Label lblResizeEntries;
+        private CheckBox cbResizeEntries;
     }
 }

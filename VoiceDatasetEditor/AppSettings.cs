@@ -11,6 +11,8 @@ namespace VoiceDatasetEditor
         public string LastList { get; set; } = "";
         public int ItemsPerPage { get; set; } = 10;
 
+        public bool ResizeEntries = false;
+
         private static string _savePath = "";
         public static AppSettings Load(string filePath)
         {

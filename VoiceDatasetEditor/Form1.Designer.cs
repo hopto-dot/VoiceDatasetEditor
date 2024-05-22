@@ -60,7 +60,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolstripFile, toolstripEdit, toolstripView, toolstripLanguage, toolstripSettings });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1051, 32);
+            toolStrip1.Size = new Size(1047, 32);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -172,14 +172,14 @@
             flowAudioPanel.BackColor = SystemColors.ControlLight;
             flowAudioPanel.Location = new Point(12, 78);
             flowAudioPanel.Name = "flowAudioPanel";
-            flowAudioPanel.Size = new Size(1027, 765);
+            flowAudioPanel.Size = new Size(1023, 765);
             flowAudioPanel.TabIndex = 0;
             // 
             // btnNextPage
             // 
             btnNextPage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnNextPage.Font = new Font("Segoe UI", 11.7818184F);
-            btnNextPage.Location = new Point(948, 39);
+            btnNextPage.Location = new Point(944, 39);
             btnNextPage.Name = "btnNextPage";
             btnNextPage.Size = new Size(91, 33);
             btnNextPage.TabIndex = 2;
@@ -191,7 +191,7 @@
             // 
             btnPreviousPage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnPreviousPage.Font = new Font("Segoe UI", 11.7818184F);
-            btnPreviousPage.Location = new Point(851, 39);
+            btnPreviousPage.Location = new Point(847, 39);
             btnPreviousPage.Name = "btnPreviousPage";
             btnPreviousPage.Size = new Size(91, 33);
             btnPreviousPage.TabIndex = 3;
@@ -203,7 +203,7 @@
             // 
             lblPage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblPage.Font = new Font("Segoe UI", 11.7818184F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPage.Location = new Point(685, 39);
+            lblPage.Location = new Point(681, 39);
             lblPage.Name = "lblPage";
             lblPage.Size = new Size(165, 33);
             lblPage.TabIndex = 4;
@@ -232,7 +232,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1051, 855);
+            ClientSize = new Size(1047, 855);
             Controls.Add(lblLoaded);
             Controls.Add(btnSave);
             Controls.Add(lblPage);
@@ -240,7 +240,7 @@
             Controls.Add(btnNextPage);
             Controls.Add(flowAudioPanel);
             Controls.Add(toolStrip1);
-            MinimumSize = new Size(1046, 300);
+            MinimumSize = new Size(1065, 300);
             Name = "Form1";
             Text = "Voice Dataset Editor";
             Shown += Form1_Shown;

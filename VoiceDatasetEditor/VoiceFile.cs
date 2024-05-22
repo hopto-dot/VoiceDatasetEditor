@@ -39,6 +39,12 @@ namespace VoiceDatasetEditor
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
+            if (!File.Exists(Entry.filepath))
+            {
+                MessageBox.Show("That transcription doesn't have a corresponding audio file!", "Missing audio", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            
             SoundPlayer soundPlayer = new SoundPlayer(Entry.filepath);
             soundPlayer.Play();
         }

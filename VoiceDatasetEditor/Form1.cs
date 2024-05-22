@@ -97,7 +97,13 @@ namespace VoiceDatasetEditor
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            // voiceFile.Width = flowAudioPanel.ClientSize.Width - flowAudioPanel.Padding.Horizontal;
+            if (Settings.ResizeEntries)
+            {
+                foreach (VoiceFile voiceFile in flowAudioPanel.Controls)
+                {
+                    voiceFile.Width = flowAudioPanel.ClientSize.Width - flowAudioPanel.Padding.Horizontal - 10;
+                }
+            }
         }
 
         private void LoadPagination()
@@ -124,6 +130,14 @@ namespace VoiceDatasetEditor
         {
             VoiceFile voiceFile = new VoiceFile(voiceEntry, this);
             flowAudioPanel.Controls.Add(voiceFile);
+            if (Settings.ResizeEntries)
+            {
+                voiceFile.Width = flowAudioPanel.ClientSize.Width - flowAudioPanel.Padding.Horizontal - 10;
+            }
+            else
+            {
+                voiceFile.Width = 990;
+            }
         }
 
         #endregion
