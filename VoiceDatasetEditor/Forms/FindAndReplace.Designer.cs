@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             btnCancel = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            tbxFind = new TextBox();
+            tbxReplace = new TextBox();
             label1 = new Label();
             label2 = new Label();
             btnReplaceAll = new Button();
@@ -48,22 +48,22 @@
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
             // 
-            // textBox1
+            // tbxFind
             // 
-            textBox1.Font = new Font("Segoe UI", 9.818182F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(124, 8);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Replace this";
-            textBox1.Size = new Size(397, 27);
-            textBox1.TabIndex = 1;
+            tbxFind.Font = new Font("Segoe UI", 9.818182F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbxFind.Location = new Point(124, 8);
+            tbxFind.Name = "tbxFind";
+            tbxFind.PlaceholderText = "Replace this";
+            tbxFind.Size = new Size(397, 27);
+            tbxFind.TabIndex = 1;
             // 
-            // textBox2
+            // tbxReplace
             // 
-            textBox2.Location = new Point(124, 52);
-            textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "With this";
-            textBox2.Size = new Size(397, 26);
-            textBox2.TabIndex = 2;
+            tbxReplace.Location = new Point(124, 52);
+            tbxReplace.Name = "tbxReplace";
+            tbxReplace.PlaceholderText = "With this";
+            tbxReplace.Size = new Size(397, 26);
+            tbxReplace.TabIndex = 2;
             // 
             // label1
             // 
@@ -93,6 +93,7 @@
             btnReplaceAll.TabIndex = 5;
             btnReplaceAll.Text = "Replace all";
             btnReplaceAll.UseVisualStyleBackColor = true;
+            btnReplaceAll.Click += btnReplaceAll_Click;
             // 
             // btnReplacePage
             // 
@@ -102,6 +103,7 @@
             btnReplacePage.TabIndex = 5;
             btnReplacePage.Text = "Replace page";
             btnReplacePage.UseVisualStyleBackColor = true;
+            btnReplacePage.Visible = false;
             // 
             // FindAndReplace
             // 
@@ -112,8 +114,8 @@
             Controls.Add(btnReplaceAll);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(tbxReplace);
+            Controls.Add(tbxFind);
             Controls.Add(btnCancel);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
@@ -121,7 +123,9 @@
             MinimizeBox = false;
             MinimumSize = new Size(551, 178);
             Name = "FindAndReplace";
+            SizeGripStyle = SizeGripStyle.Hide;
             Text = "Find and replace";
+            TopMost = true;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -129,8 +133,8 @@
         #endregion
 
         private Button btnCancel;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox tbxFind;
+        private TextBox tbxReplace;
         private Label label1;
         private Label label2;
         private Button btnReplaceAll;

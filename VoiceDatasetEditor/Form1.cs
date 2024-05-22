@@ -17,7 +17,7 @@ namespace VoiceDatasetEditor
             flowAudioPanel.DragEnter += new DragEventHandler(flowAudioPanel_DragEnterEvent);
             flowAudioPanel.DragDrop += new DragEventHandler(flowAudioPanel_DragDropEvent);
 
-            menuFindAndReplace.Visible = false;
+            // menuFindAndReplace.Visible = false;
         }
 
         public void Localise(string language)
@@ -140,6 +140,35 @@ namespace VoiceDatasetEditor
             }
         }
 
+        public void FindAndReplace(string find, string replace)
+        {
+            int replacements = 0;
+            foreach (VoiceEntry voiceEntry in voiceEntries)
+            {
+                if (voiceEntry.transcription != voiceEntry.transcription.Replace(find, replace))
+                {
+                    replacements++;
+                }
+                voiceEntry.transcription = voiceEntry.transcription.Replace(find, replace);
+                SaveTranscription(Path.GetFileName(voiceEntry.filepath), voiceEntry.transcription.Replace(find, replace));
+            }
+
+            foreach (VoiceFile voiceFile in flowAudioPanel.Controls)
+            {
+                string oldTranscription = voiceFile.Entry.transcription;
+                voiceFile.EditTranscription(oldTranscription.Replace(find, replace));
+            }
+
+            if (Settings.Language == "EN")
+            {
+                MessageBox.Show($"{replacements} transcriptions were replaced", "Find and replace success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show($"{replacements}åèÇÃï∂éöãNÇ±ÇµÇ™íuä∑Ç≥ÇÍÇ‹ÇµÇΩ", "åüçıÇ∆íuä∑Ç™ê¨å˜ÇµÇ‹ÇµÇΩ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         #endregion
 
         #region buttons
@@ -257,11 +286,14 @@ namespace VoiceDatasetEditor
         #endregion
 
         #region edit_toolbar
-        FindAndReplace findAndReplace = new FindAndReplace();
+        FindAndReplace findAndReplace;
         private void menuFindAndReplace_Click(object sender, EventArgs e)
         {
-            findAndReplace.Close();
-            findAndReplace = new FindAndReplace();
+            if (findAndReplace != null)
+            {
+                findAndReplace.Close();
+            }
+            findAndReplace = new FindAndReplace(this);
             findAndReplace.Show();
         }
         #endregion
@@ -328,6 +360,8 @@ namespace VoiceDatasetEditor
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                listFilePath = files[0];
 
                 voiceEntries = LoadVoiceEntries(files[0]);
 

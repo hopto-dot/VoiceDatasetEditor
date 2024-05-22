@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using NAudio.Wave;
 
 namespace VoiceDatasetEditor
 {
@@ -44,7 +45,7 @@ namespace VoiceDatasetEditor
                 MessageBox.Show("That transcription doesn't have a corresponding audio file!", "Missing audio", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            
+
             SoundPlayer soundPlayer = new SoundPlayer(Entry.filepath);
             soundPlayer.Play();
         }
@@ -58,6 +59,12 @@ namespace VoiceDatasetEditor
         private void tbxTranscription_TextChanged(object sender, EventArgs e)
         {
             Entry.transcription = tbxTranscription.Text;
+        }
+
+        public void EditTranscription(string NewTranscription)
+        {
+            // Entry.transcription = NewTranscription;
+            tbxTranscription.Text = NewTranscription;
         }
     }
 }
