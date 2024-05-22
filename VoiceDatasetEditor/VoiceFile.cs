@@ -46,8 +46,15 @@ namespace VoiceDatasetEditor
                 return;
             }
 
-            SoundPlayer soundPlayer = new SoundPlayer(Entry.filepath);
-            soundPlayer.Play();
+            //SoundPlayer soundPlayer = new SoundPlayer(Entry.filepath);
+            //soundPlayer.Play();
+
+            var audioFile = new AudioFileReader(Entry.filepath);
+            WaveOutEvent outputDevice = new WaveOutEvent();
+            var volumeProvider = new VolumeSampleProvider(audioFile.ToSampleProvider(), 2f);
+
+            outputDevice.Init(volumeProvider);
+            outputDevice.Play();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -65,6 +72,33 @@ namespace VoiceDatasetEditor
         {
             // Entry.transcription = NewTranscription;
             tbxTranscription.Text = NewTranscription;
+        }
+
+        private class VolumeSampleProvider : ISampleProvider
+        {
+            private readonly ISampleProvider source;
+            private readonly float volumeBoost;
+
+            public VolumeSampleProvider(ISampleProvider source, float volumeBoost)
+            {
+                this.source = source;
+                this.volumeBoost = volumeBoost;
+            }
+
+            public WaveFormat WaveFormat => source.WaveFormat;
+
+            public int Read(float[] buffer, int offset, int count)
+            {
+                int samplesRead = source.Read(buffer, offset, count);
+
+                // Apply volume boost
+                for (int i = offset; i < offset + samplesRead; i++)
+                {
+                    buffer[i] *= volumeBoost;
+                }
+
+                return samplesRead;
+            }
         }
     }
 }

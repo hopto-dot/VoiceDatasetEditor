@@ -86,7 +86,7 @@
             // btnSave
             // 
             btnSave.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnSave.Location = new Point(238, 117);
+            btnSave.Location = new Point(238, 148);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(83, 30);
             btnSave.TabIndex = 4;
@@ -130,7 +130,7 @@
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnClose;
-            ClientSize = new Size(333, 159);
+            ClientSize = new Size(333, 190);
             Controls.Add(cbResizeEntries);
             Controls.Add(lblResizeEntries);
             Controls.Add(btnClose);
