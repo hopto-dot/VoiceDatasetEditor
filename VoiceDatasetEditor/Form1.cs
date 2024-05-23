@@ -17,8 +17,6 @@ namespace VoiceDatasetEditor
 
             flowAudioPanel.DragEnter += new DragEventHandler(flowAudioPanel_DragEnterEvent);
             flowAudioPanel.DragDrop += new DragEventHandler(flowAudioPanel_DragDropEvent);
-
-            // menuFindAndReplace.Visible = false;
         }
 
         public void Localise(string language)
@@ -312,7 +310,7 @@ namespace VoiceDatasetEditor
 
                 LoadPagination();
 
-                if (voiceEntries.Count < 1700)
+                if (voiceEntries.Count <= 2000)
                 {
                     Settings.LastList = listFilePath;
                     Settings.Save();
