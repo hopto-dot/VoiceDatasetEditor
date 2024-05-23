@@ -92,6 +92,8 @@ namespace VoiceDatasetEditor.Forms
             MainForm.Settings.Save();
 
             Localise();
+
+            Close();
         }
 
         private void Settings_Load(object sender, EventArgs e)
