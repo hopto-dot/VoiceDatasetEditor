@@ -195,15 +195,7 @@ namespace VoiceDatasetEditor
         #region buttons
         private void btnSaveAll_Click(object sender, EventArgs e)
         {
-            SaveAllVoiceEntries();
-        }
-
-        private void SaveAllVoiceEntries()
-        {
-            foreach (VoiceEntry voiceEntry in voiceEntries)
-            {
-                SaveTranscription(Path.GetFileName(voiceEntry.filepath), voiceEntry.transcription);
-            }
+            WriteSaveAllVoiceEntries();
         }
 
         private void WriteSaveAllVoiceEntries()
