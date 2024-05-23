@@ -35,7 +35,8 @@ namespace VoiceDatasetEditor
 
                 btnNextPage.Text = "次へ";
                 btnPreviousPage.Text = "前へ";
-                btnSave.Text = "保存";
+                btnSave.Text = "ページを保存";
+                btnSaveAll.Text = "すべて保存";
 
                 menuLoadDataset.Text = "データセットを読み込む";
                 menuSaveDataset.Text = "データセットを保存する";
@@ -56,7 +57,8 @@ namespace VoiceDatasetEditor
 
                 btnNextPage.Text = "Next";
                 btnPreviousPage.Text = "Previous";
-                btnSave.Text = "Save";
+                btnSave.Text = "Save page";
+                btnSaveAll.Text = "Save all";
 
                 menuLoadDataset.Text = "Load dataset";
                 menuSaveDataset.Text = "Save dataset";
@@ -77,13 +79,14 @@ namespace VoiceDatasetEditor
         List<VoiceEntry> voiceEntries = new List<VoiceEntry> { };
         int page = 0;
 
-        string listFilePath = ""; 
+        string listFilePath = "";
 
         #region form_events
         private void Form1_Shown(object sender, EventArgs e)
         {
             if (Settings.LastList != "")
             {
+                listFilePath = Settings.LastList;
                 voiceEntries = LoadVoiceEntries(Settings.LastList);
 
                 if (voiceEntries.Count == 0)
@@ -169,9 +172,31 @@ namespace VoiceDatasetEditor
             }
         }
 
+        public void UpdateTranscriptionsWithPanel()
+        {
+            foreach (VoiceFile voiceFile in flowAudioPanel.Controls)
+            {
+                var entry = voiceEntries.FirstOrDefault(e => e.filepath == voiceFile.Entry.filepath);
+                if (entry != null)
+                {
+                    entry.transcription = voiceFile.Entry.transcription;
+                }
+            }
+        }
+
+
+
         #endregion
 
         #region buttons
+        private void btnSaveAll_Click(object sender, EventArgs e)
+        {
+            foreach (VoiceEntry voiceEntry in voiceEntries)
+            {
+               SaveTranscription(Path.GetFileName(voiceEntry.filepath), voiceEntry.transcription);
+            }
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (flowAudioPanel.Controls.Count == 0)
@@ -205,6 +230,7 @@ namespace VoiceDatasetEditor
                 NoneLoaded();
                 return;
             }
+            //UpdateTranscriptionsWithPanel();
 
             page += 1;
             if (page > voiceEntries.Count / 10)
@@ -224,6 +250,7 @@ namespace VoiceDatasetEditor
                 NoneLoaded();
                 return;
             }
+            //UpdateTranscriptionsWithPanel();
 
             page -= 1;
             if (page < 0)
@@ -369,6 +396,7 @@ namespace VoiceDatasetEditor
             }
         }
         #endregion
+
 
 
         

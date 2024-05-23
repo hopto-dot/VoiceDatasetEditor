@@ -48,6 +48,7 @@
             lblPage = new Label();
             btnSave = new Button();
             lblLoaded = new Label();
+            btnSaveAll = new Button();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -212,27 +213,39 @@
             // btnSave
             // 
             btnSave.Font = new Font("Segoe UI", 11.7818184F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSave.Location = new Point(12, 41);
+            btnSave.Location = new Point(130, 39);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(82, 33);
+            btnSave.Size = new Size(120, 33);
             btnSave.TabIndex = 5;
-            btnSave.Text = "Save";
+            btnSave.Text = "Save page";
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
             // lblLoaded
             // 
             lblLoaded.AutoSize = true;
-            lblLoaded.Location = new Point(100, 48);
+            lblLoaded.Location = new Point(254, 46);
             lblLoaded.Name = "lblLoaded";
             lblLoaded.Size = new Size(0, 19);
             lblLoaded.TabIndex = 6;
+            // 
+            // btnSaveAll
+            // 
+            btnSaveAll.Font = new Font("Segoe UI", 11.7818184F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSaveAll.Location = new Point(12, 39);
+            btnSaveAll.Name = "btnSaveAll";
+            btnSaveAll.Size = new Size(112, 33);
+            btnSaveAll.TabIndex = 7;
+            btnSaveAll.Text = "Save all";
+            btnSaveAll.UseVisualStyleBackColor = true;
+            btnSaveAll.Click += btnSaveAll_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1047, 855);
+            Controls.Add(btnSaveAll);
             Controls.Add(lblLoaded);
             Controls.Add(btnSave);
             Controls.Add(lblPage);
@@ -272,5 +285,6 @@
         private ToolStripMenuItem menuRefresh;
         private ToolStripButton toolstripSettings;
         private ToolStripMenuItem menuUnload;
+        private Button btnSaveAll;
     }
 }
