@@ -98,16 +98,19 @@ namespace VoiceDatasetEditor
             }
         }
 
+        private int previousWidth;
         private void Form1_Resize(object sender, EventArgs e)
         {
-            if (Settings.ResizeEntries)
+            if (Math.Abs(this.Width - previousWidth) >= 20 && Settings.ResizeEntries)
             {
                 foreach (VoiceFile voiceFile in flowAudioPanel.Controls)
                 {
                     voiceFile.Width = flowAudioPanel.ClientSize.Width - flowAudioPanel.Padding.Horizontal - 10;
                 }
+                previousWidth = this.Width;
             }
         }
+
 
         private void LoadPagination()
         {
@@ -191,10 +194,32 @@ namespace VoiceDatasetEditor
         #region buttons
         private void btnSaveAll_Click(object sender, EventArgs e)
         {
+            SaveAllVoiceEntries();
+        }
+
+        private void SaveAllVoiceEntries()
+        {
             foreach (VoiceEntry voiceEntry in voiceEntries)
             {
-               SaveTranscription(Path.GetFileName(voiceEntry.filepath), voiceEntry.transcription);
+                SaveTranscription(Path.GetFileName(voiceEntry.filepath), voiceEntry.transcription);
             }
+        }
+
+        private void WriteSaveAllVoiceEntries()
+        {
+            var lines = voiceEntries.Select(entry => $"{Path.GetFileName(entry.filepath)}|{entry.speakerName}|{entry.language}|{entry.transcription}");
+            File.WriteAllLines(listFilePath, lines);
+        }
+
+        public void DeleteTranscription(VoiceEntry entry)
+        {
+            // Remove the entry from the list
+            voiceEntries.Remove(entry);
+
+            // Update the list file
+            WriteSaveAllVoiceEntries();
+
+            // LoadPagination();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -399,6 +424,6 @@ namespace VoiceDatasetEditor
 
 
 
-        
+
     }
 }

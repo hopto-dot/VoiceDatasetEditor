@@ -32,6 +32,7 @@
             tbxTranscription = new TextBox();
             btnSave = new Button();
             lblLength = new Label();
+            btnDelete = new Button();
             SuspendLayout();
             // 
             // btnPlay
@@ -52,7 +53,7 @@
             tbxTranscription.Location = new Point(89, 16);
             tbxTranscription.MaxLength = 5000;
             tbxTranscription.Name = "tbxTranscription";
-            tbxTranscription.Size = new Size(806, 35);
+            tbxTranscription.Size = new Size(714, 35);
             tbxTranscription.TabIndex = 1;
             tbxTranscription.WordWrap = false;
             tbxTranscription.TextChanged += tbxTranscription_TextChanged;
@@ -78,10 +79,23 @@
             lblLength.Text = "0 seconds";
             lblLength.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // btnDelete
+            // 
+            btnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnDelete.Font = new Font("Segoe UI", 9.818182F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDelete.Location = new Point(809, 16);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(86, 35);
+            btnDelete.TabIndex = 4;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
+            // 
             // VoiceFile
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(btnDelete);
             Controls.Add(btnSave);
             Controls.Add(tbxTranscription);
             Controls.Add(btnPlay);
@@ -99,5 +113,6 @@
         private TextBox tbxTranscription;
         private Button btnSave;
         private Label lblLength;
+        private Button btnDelete;
     }
 }

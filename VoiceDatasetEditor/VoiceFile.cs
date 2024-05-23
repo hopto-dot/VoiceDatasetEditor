@@ -31,6 +31,7 @@ namespace VoiceDatasetEditor
                 lblLength.Text = $"{Entry.length}秒";
                 btnPlay.Text = "再生";
                 btnSave.Text = "保存";
+                btnDelete.Text = "削除";
             }
             else
             {
@@ -98,6 +99,20 @@ namespace VoiceDatasetEditor
                 }
 
                 return samplesRead;
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            string message = MainForm.Settings.Language == "JP" ? "このエントリを削除してもよろしいですか？" : "Are you sure you want to delete this entry?";
+            string title = MainForm.Settings.Language == "JP" ? "確認" : "Confirmation";
+            
+            var result = MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                MainForm.DeleteTranscription(Entry);
+                Dispose();
             }
         }
     }
