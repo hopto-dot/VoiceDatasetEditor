@@ -38,7 +38,7 @@
             // btnPlay
             // 
             btnPlay.Font = new Font("Segoe UI", 9.818182F);
-            btnPlay.Location = new Point(17, 16);
+            btnPlay.Location = new Point(10, 16);
             btnPlay.Name = "btnPlay";
             btnPlay.Size = new Size(66, 35);
             btnPlay.TabIndex = 0;
@@ -50,10 +50,10 @@
             // 
             tbxTranscription.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tbxTranscription.Font = new Font("Segoe UI", 13.7454548F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tbxTranscription.Location = new Point(89, 16);
+            tbxTranscription.Location = new Point(82, 16);
             tbxTranscription.MaxLength = 5000;
             tbxTranscription.Name = "tbxTranscription";
-            tbxTranscription.Size = new Size(722, 35);
+            tbxTranscription.Size = new Size(729, 35);
             tbxTranscription.TabIndex = 1;
             tbxTranscription.WordWrap = false;
             tbxTranscription.TextChanged += tbxTranscription_TextChanged;
@@ -72,7 +72,7 @@
             // 
             // lblLength
             // 
-            lblLength.Location = new Point(4, 50);
+            lblLength.Location = new Point(-3, 50);
             lblLength.Name = "lblLength";
             lblLength.Size = new Size(93, 18);
             lblLength.TabIndex = 3;

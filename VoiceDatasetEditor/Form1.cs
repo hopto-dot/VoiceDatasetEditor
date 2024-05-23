@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Reflection;
 using System.Windows.Forms;
 using VoiceDatasetEditor.Forms;
 
@@ -104,7 +105,7 @@ namespace VoiceDatasetEditor
             {
                 foreach (VoiceFile voiceFile in flowAudioPanel.Controls)
                 {
-                    voiceFile.Width = flowAudioPanel.ClientSize.Width - flowAudioPanel.Padding.Horizontal - 10;
+                    voiceFile.Width = flowAudioPanel.ClientSize.Width - flowAudioPanel.Padding.Horizontal - 15;
                 }
             }
         }
@@ -112,6 +113,8 @@ namespace VoiceDatasetEditor
 
         private void LoadPagination()
         {
+            panelClientWidth = flowAudioPanel.ClientSize.Width;
+
             lblPage.Text = $"{page + 1} / {(voiceEntries.Count / Settings.ItemsPerPage) + 1}";
             flowAudioPanel.Controls.Clear();
             for (int i = page * Settings.ItemsPerPage; i < (page * Settings.ItemsPerPage) + Settings.ItemsPerPage; i++)
@@ -130,17 +133,19 @@ namespace VoiceDatasetEditor
             LoadPagination();
         }
 
+        private int panelClientWidth = 0;
+
         private void AddEntryToPanel(VoiceEntry voiceEntry)
         {
             VoiceFile voiceFile = new VoiceFile(voiceEntry, this);
             flowAudioPanel.Controls.Add(voiceFile);
             if (Settings.ResizeEntries)
             {
-                voiceFile.Width = flowAudioPanel.ClientSize.Width - flowAudioPanel.Padding.Horizontal - 25;
+                voiceFile.Width = panelClientWidth - flowAudioPanel.Padding.Horizontal - 25;
             }
             else
             {
-                voiceFile.Width = 990;
+                voiceFile.Width = 985;
             }
         }
 
@@ -256,9 +261,9 @@ namespace VoiceDatasetEditor
             //UpdateTranscriptionsWithPanel();
 
             page += 1;
-            if (page > voiceEntries.Count / 10)
+            if (page > voiceEntries.Count / Settings.ItemsPerPage)
             {
-                page = voiceEntries.Count / 10;
+                page = voiceEntries.Count / Settings.ItemsPerPage;
             }
             else
             {
@@ -351,6 +356,7 @@ namespace VoiceDatasetEditor
         #region view_toolbar
         private void menuRefresh_Click(object sender, EventArgs e)
         {
+            page = 0;
             LoadPagination();
         }
 
@@ -362,6 +368,7 @@ namespace VoiceDatasetEditor
 
             lblLoaded.Text = "";
             lblPage.Text = "";
+            Text = "Voice Dataset Editor";
         }
         #endregion
 
