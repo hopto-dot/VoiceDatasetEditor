@@ -415,10 +415,31 @@ namespace VoiceDatasetEditor
                 LoadPagination();
             }
         }
+
         #endregion
 
+        private void menuSortByFilename_Click(object sender, EventArgs e)
+        {
+            voiceEntries.Sort((x, y) => Path.GetFileName(x.filepath).CompareTo(Path.GetFileName(y.filepath)));
+            LoadFirstPage();
+        }
 
+        private void menuSortByTranscription_Click(object sender, EventArgs e)
+        {
+            voiceEntries.Sort((x, y) => x.transcription.CompareTo(y.transcription));
+            LoadFirstPage();
+        }
 
+        private void menuSortByAudioLength_Click(object sender, EventArgs e)
+        {
+            voiceEntries.Sort((x, y) => y.length.CompareTo(x.length));
+            LoadFirstPage();
+        }
 
+        private void menuSortByReverse_Click(object sender, EventArgs e)
+        {
+            voiceEntries.Reverse();
+            LoadFirstPage();
+        }
     }
 }

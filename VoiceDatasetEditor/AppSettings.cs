@@ -38,7 +38,7 @@ namespace VoiceDatasetEditor
                 if (settings.ItemsPerPage < 1) { settings.ItemsPerPage = 1; }
                 if (settings.ItemsPerPage > 1000) { settings.ItemsPerPage = 1000; }
 
-                double[] validValues = { 0.5, 1, 1.5, 2, 2.5, 3 };
+                double[] validValues = { 0.5, 1, 2, 3, 4 };
                 if (!Array.Exists(validValues, element => element == (double)settings.VolumeBoost))
                 {
                     settings.VolumeBoost = (decimal)1;

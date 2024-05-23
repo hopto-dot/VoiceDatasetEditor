@@ -133,7 +133,7 @@
             cbbVolumeBoost.AutoCompleteSource = AutoCompleteSource.CustomSource;
             cbbVolumeBoost.DropDownStyle = ComboBoxStyle.DropDownList;
             cbbVolumeBoost.FormattingEnabled = true;
-            cbbVolumeBoost.Items.AddRange(new object[] { "0.5", "1.0", "1.5", "2.0", "2.5", "3.0" });
+            cbbVolumeBoost.Items.AddRange(new object[] { "0.5", "1.0", "2.0", "3.0", "4.0" });
             cbbVolumeBoost.Location = new Point(226, 117);
             cbbVolumeBoost.Name = "cbbVolumeBoost";
             cbbVolumeBoost.Size = new Size(139, 27);
