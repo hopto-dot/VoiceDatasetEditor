@@ -98,16 +98,14 @@ namespace VoiceDatasetEditor
             }
         }
 
-        private int previousWidth;
         private void Form1_Resize(object sender, EventArgs e)
         {
-            if (Math.Abs(this.Width - previousWidth) >= 20 && Settings.ResizeEntries)
+            if (Settings.ResizeEntries)
             {
                 foreach (VoiceFile voiceFile in flowAudioPanel.Controls)
                 {
                     voiceFile.Width = flowAudioPanel.ClientSize.Width - flowAudioPanel.Padding.Horizontal - 10;
                 }
-                previousWidth = this.Width;
             }
         }
 
@@ -138,7 +136,7 @@ namespace VoiceDatasetEditor
             flowAudioPanel.Controls.Add(voiceFile);
             if (Settings.ResizeEntries)
             {
-                voiceFile.Width = flowAudioPanel.ClientSize.Width - flowAudioPanel.Padding.Horizontal - 10;
+                voiceFile.Width = flowAudioPanel.ClientSize.Width - flowAudioPanel.Padding.Horizontal - 25;
             }
             else
             {

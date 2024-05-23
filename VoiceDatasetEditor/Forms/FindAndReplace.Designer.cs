@@ -31,8 +31,8 @@
             btnCancel = new Button();
             tbxFind = new TextBox();
             tbxReplace = new TextBox();
-            label1 = new Label();
-            label2 = new Label();
+            lblFindWhat = new Label();
+            lblReplaceWith = new Label();
             btnReplaceAll = new Button();
             btnReplacePage = new Button();
             SuspendLayout();
@@ -51,39 +51,39 @@
             // tbxFind
             // 
             tbxFind.Font = new Font("Segoe UI", 9.818182F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tbxFind.Location = new Point(124, 8);
+            tbxFind.Location = new Point(139, 8);
             tbxFind.Name = "tbxFind";
             tbxFind.PlaceholderText = "Replace this";
-            tbxFind.Size = new Size(397, 27);
+            tbxFind.Size = new Size(382, 27);
             tbxFind.TabIndex = 1;
             // 
             // tbxReplace
             // 
-            tbxReplace.Location = new Point(124, 52);
+            tbxReplace.Location = new Point(139, 52);
             tbxReplace.Name = "tbxReplace";
             tbxReplace.PlaceholderText = "With this";
-            tbxReplace.Size = new Size(397, 26);
+            tbxReplace.Size = new Size(382, 26);
             tbxReplace.TabIndex = 2;
             // 
-            // label1
+            // lblFindWhat
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 11.1272726F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(8, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(88, 23);
-            label1.TabIndex = 3;
-            label1.Text = "Find what:";
+            lblFindWhat.AutoSize = true;
+            lblFindWhat.Font = new Font("Segoe UI", 11.1272726F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblFindWhat.Location = new Point(8, 9);
+            lblFindWhat.Name = "lblFindWhat";
+            lblFindWhat.Size = new Size(88, 23);
+            lblFindWhat.TabIndex = 3;
+            lblFindWhat.Text = "Find what:";
             // 
-            // label2
+            // lblReplaceWith
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 11.1272726F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(8, 52);
-            label2.Name = "label2";
-            label2.Size = new Size(110, 23);
-            label2.TabIndex = 4;
-            label2.Text = "Replace with:";
+            lblReplaceWith.AutoSize = true;
+            lblReplaceWith.Font = new Font("Segoe UI", 11.1272726F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblReplaceWith.Location = new Point(8, 52);
+            lblReplaceWith.Name = "lblReplaceWith";
+            lblReplaceWith.Size = new Size(110, 23);
+            lblReplaceWith.TabIndex = 4;
+            lblReplaceWith.Text = "Replace with:";
             // 
             // btnReplaceAll
             // 
@@ -111,12 +111,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnCancel;
             ClientSize = new Size(533, 134);
+            Controls.Add(tbxFind);
+            Controls.Add(tbxReplace);
             Controls.Add(btnReplacePage);
             Controls.Add(btnReplaceAll);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(tbxReplace);
-            Controls.Add(tbxFind);
+            Controls.Add(lblReplaceWith);
+            Controls.Add(lblFindWhat);
             Controls.Add(btnCancel);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
@@ -136,8 +136,8 @@
         private Button btnCancel;
         private TextBox tbxFind;
         private TextBox tbxReplace;
-        private Label label1;
-        private Label label2;
+        private Label lblFindWhat;
+        private Label lblReplaceWith;
         private Button btnReplaceAll;
         private Button btnReplacePage;
     }

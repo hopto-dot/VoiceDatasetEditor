@@ -53,7 +53,7 @@
             tbxTranscription.Location = new Point(89, 16);
             tbxTranscription.MaxLength = 5000;
             tbxTranscription.Name = "tbxTranscription";
-            tbxTranscription.Size = new Size(714, 35);
+            tbxTranscription.Size = new Size(722, 35);
             tbxTranscription.TabIndex = 1;
             tbxTranscription.WordWrap = false;
             tbxTranscription.TextChanged += tbxTranscription_TextChanged;
@@ -82,13 +82,15 @@
             // btnDelete
             // 
             btnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnDelete.BackColor = SystemColors.Control;
+            btnDelete.FlatStyle = FlatStyle.System;
             btnDelete.Font = new Font("Segoe UI", 9.818182F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnDelete.Location = new Point(809, 16);
+            btnDelete.Location = new Point(817, 16);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(86, 35);
+            btnDelete.Size = new Size(78, 35);
             btnDelete.TabIndex = 4;
             btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
             // VoiceFile

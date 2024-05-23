@@ -17,6 +17,8 @@ namespace VoiceDatasetEditor.Forms
         {
             InitializeComponent();
             Mainform = form1;
+
+            Localise();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -28,6 +30,21 @@ namespace VoiceDatasetEditor.Forms
         {
             Mainform.FindAndReplace(tbxFind.Text, tbxReplace.Text);
             Close();
+        }
+
+        private void Localise()
+        {
+            if (Mainform.Settings.Language == "JP")
+            {
+                btnCancel.Text = "キャンセル";
+                btnReplaceAll.Text = "すべて置換";
+
+                lblFindWhat.Text = "検索する文字列：";
+                lblReplaceWith.Text = "置換する文字列：";
+
+                tbxFind.PlaceholderText = "";
+                tbxReplace.PlaceholderText = "";
+            }
         }
     }
 }
