@@ -40,6 +40,8 @@ namespace VoiceDatasetEditor
 
                 menuLoadDataset.Text = "データセットを読み込む";
                 menuSaveDataset.Text = "データセットを保存する";
+                menuOpenListFile.Text = ".listファイルを開く";
+
                 menuRefresh.Text = "データセットの再読み込み";
                 menuUnload.Text = "データセットの読み込み解除";
                 menuFindAndReplace.Text = "検索と置換";
@@ -62,6 +64,8 @@ namespace VoiceDatasetEditor
 
                 menuLoadDataset.Text = "Load dataset";
                 menuSaveDataset.Text = "Save dataset";
+                menuOpenListFile.Text = "Open list file";
+
                 menuRefresh.Text = "Refresh";
                 menuUnload.Text = "Unload dataset";
                 menuFindAndReplace.Text = "Find and replace";
@@ -333,6 +337,23 @@ namespace VoiceDatasetEditor
 
             VoiceListParser.WriteSaveAllVoiceEntries(voiceEntries, listFilePath);
         }
+
+        private void menuOpenListFile_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(listFilePath))
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
+                {
+                    FileName = listFilePath,
+                    UseShellExecute = true,
+                    Verb = "open"
+                });
+            }
+            else
+            {
+                MessageBox.Show("No list file is currently loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         #endregion
 
         #region edit_toolbar
@@ -453,22 +474,5 @@ namespace VoiceDatasetEditor
             LoadFirstPage();
         }
         #endregion
-
-        private void menuOpenListFile_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(listFilePath))
-            {
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
-                {
-                    FileName = listFilePath,
-                    UseShellExecute = true,
-                    Verb = "open"
-                });
-            }
-            else
-            {
-                MessageBox.Show("No list file is currently loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
     }
 }
