@@ -33,6 +33,7 @@
             toolstripFile = new ToolStripDropDownButton();
             menuLoadDataset = new ToolStripMenuItem();
             menuSaveDataset = new ToolStripMenuItem();
+            menuOpenListFile = new ToolStripMenuItem();
             toolstripEdit = new ToolStripDropDownButton();
             menuFindAndReplace = new ToolStripMenuItem();
             toolstripView = new ToolStripDropDownButton();
@@ -42,6 +43,7 @@
             menuSortByFilename = new ToolStripMenuItem();
             menuSortByTranscription = new ToolStripMenuItem();
             menuSortByAudioLength = new ToolStripMenuItem();
+            menuSortByReverse = new ToolStripMenuItem();
             toolstripLanguage = new ToolStripDropDownButton();
             menuEnglish = new ToolStripMenuItem();
             menuJapanese = new ToolStripMenuItem();
@@ -53,7 +55,6 @@
             btnSave = new Button();
             lblLoaded = new Label();
             btnSaveAll = new Button();
-            menuSortByReverse = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -74,7 +75,7 @@
             // 
             toolstripFile.AutoToolTip = false;
             toolstripFile.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolstripFile.DropDownItems.AddRange(new ToolStripItem[] { menuLoadDataset, menuSaveDataset });
+            toolstripFile.DropDownItems.AddRange(new ToolStripItem[] { menuLoadDataset, menuSaveDataset, menuOpenListFile });
             toolstripFile.Image = (Image)resources.GetObject("toolstripFile.Image");
             toolstripFile.ImageTransparentColor = Color.Magenta;
             toolstripFile.Name = "toolstripFile";
@@ -84,16 +85,23 @@
             // menuLoadDataset
             // 
             menuLoadDataset.Name = "menuLoadDataset";
-            menuLoadDataset.Size = new Size(194, 30);
+            menuLoadDataset.Size = new Size(206, 30);
             menuLoadDataset.Text = "Load dataset";
             menuLoadDataset.Click += menuLoadDataset_Click_1;
             // 
             // menuSaveDataset
             // 
             menuSaveDataset.Name = "menuSaveDataset";
-            menuSaveDataset.Size = new Size(194, 30);
+            menuSaveDataset.Size = new Size(206, 30);
             menuSaveDataset.Text = "Save dataset";
             menuSaveDataset.Click += menuSaveDataset_Click;
+            // 
+            // menuOpenListFile
+            // 
+            menuOpenListFile.Name = "menuOpenListFile";
+            menuOpenListFile.Size = new Size(206, 30);
+            menuOpenListFile.Text = "Open list file";
+            menuOpenListFile.Click += menuOpenListFile_Click;
             // 
             // toolstripEdit
             // 
@@ -147,23 +155,30 @@
             // menuSortByFilename
             // 
             menuSortByFilename.Name = "menuSortByFilename";
-            menuSortByFilename.Size = new Size(206, 30);
+            menuSortByFilename.Size = new Size(200, 30);
             menuSortByFilename.Text = "File name";
             menuSortByFilename.Click += menuSortByFilename_Click;
             // 
             // menuSortByTranscription
             // 
             menuSortByTranscription.Name = "menuSortByTranscription";
-            menuSortByTranscription.Size = new Size(206, 30);
+            menuSortByTranscription.Size = new Size(200, 30);
             menuSortByTranscription.Text = "Transcription";
             menuSortByTranscription.Click += menuSortByTranscription_Click;
             // 
             // menuSortByAudioLength
             // 
             menuSortByAudioLength.Name = "menuSortByAudioLength";
-            menuSortByAudioLength.Size = new Size(206, 30);
+            menuSortByAudioLength.Size = new Size(200, 30);
             menuSortByAudioLength.Text = "Audio length";
             menuSortByAudioLength.Click += menuSortByAudioLength_Click;
+            // 
+            // menuSortByReverse
+            // 
+            menuSortByReverse.Name = "menuSortByReverse";
+            menuSortByReverse.Size = new Size(200, 30);
+            menuSortByReverse.Text = "Reverse order";
+            menuSortByReverse.Click += menuSortByReverse_Click;
             // 
             // toolstripLanguage
             // 
@@ -273,13 +288,6 @@
             btnSaveAll.UseVisualStyleBackColor = true;
             btnSaveAll.Click += btnSaveAll_Click;
             // 
-            // menuSortByReverse
-            // 
-            menuSortByReverse.Name = "menuSortByReverse";
-            menuSortByReverse.Size = new Size(206, 30);
-            menuSortByReverse.Text = "Reverse order";
-            menuSortByReverse.Click += menuSortByReverse_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
@@ -331,5 +339,6 @@
         private ToolStripMenuItem menuSortByTranscription;
         private ToolStripMenuItem menuSortByAudioLength;
         private ToolStripMenuItem menuSortByReverse;
+        private ToolStripMenuItem menuOpenListFile;
     }
 }

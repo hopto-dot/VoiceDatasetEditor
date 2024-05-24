@@ -212,7 +212,7 @@ namespace VoiceDatasetEditor
         private void btnSaveAll_Click(object sender, EventArgs e)
         {
             VoiceListParser.WriteSaveAllVoiceEntries(voiceEntries, listFilePath);
-        }        
+        }
 
         public void DeleteTranscription(VoiceEntry entry)
         {
@@ -285,7 +285,7 @@ namespace VoiceDatasetEditor
                 LoadPagination();
             }
         }
-        
+
         #endregion
 
         #region file_toolbar
@@ -336,7 +336,6 @@ namespace VoiceDatasetEditor
         #endregion
 
         #region edit_toolbar
-        FindAndReplace? findAndReplace;
         private void menuFindAndReplace_Click(object sender, EventArgs e)
         {
             FindAndReplace findAndReplace = FindAndReplace.GetInstance(this);
@@ -383,9 +382,6 @@ namespace VoiceDatasetEditor
         #endregion
 
         #region settings_toolbar
-
-        Settings? settingsMenu;
-
         private void menuSettings_Click(object sender, EventArgs e)
         {
             Settings settingsMenu = Settings.GetInstance(this);
@@ -457,5 +453,22 @@ namespace VoiceDatasetEditor
             LoadFirstPage();
         }
         #endregion
+
+        private void menuOpenListFile_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(listFilePath))
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
+                {
+                    FileName = listFilePath,
+                    UseShellExecute = true,
+                    Verb = "open"
+                });
+            }
+            else
+            {
+                MessageBox.Show("No list file is currently loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
