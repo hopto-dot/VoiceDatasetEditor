@@ -89,6 +89,7 @@ namespace VoiceDatasetEditor.Forms
             if (newItemsPerPage != Form1.ApplicationSettings.ItemsPerPage)
             {
                 Form1.ApplicationSettings.ItemsPerPage = newItemsPerPage;
+                Form1.ApplicationSettings.Save();
                 MainForm.LoadFirstPage();
             }
             else if (cbResizeEntries.Checked != Form1.ApplicationSettings.ResizeEntries) // <- note else if
