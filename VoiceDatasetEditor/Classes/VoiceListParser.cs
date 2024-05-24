@@ -86,6 +86,31 @@ namespace VoiceDatasetEditor.Classes
             File.WriteAllLines(listFilePath, lines);
         }
 
+        public static void DeleteTranscriptionlessAudio(List<VoiceEntry> voiceEntries, string listFolderPath)
+        {
+            string movedFolderPath = Path.GetDirectoryName(listFolderPath) + "\\moved";
+            
+            Directory.CreateDirectory(movedFolderPath);
+
+            var audioFiles = Directory.GetFiles(Path.GetDirectoryName(listFolderPath) + "\\raw");
+
+            int moved = 0;
+            foreach (var audioFile in audioFiles)
+            {
+                string audioFileName = Path.GetFileName(audioFile);
+                if (!audioFileName.EndsWith(".wav") && !audioFileName.EndsWith(".mp3"))
+                    continue;
+
+                if (!voiceEntries.Any(ve => ve.filepath == audioFile))
+                {
+                    var movedFilePath = Path.Combine(movedFolderPath, Path.GetFileName(audioFile));
+                    File.Move(audioFile, movedFilePath);
+                    moved++;
+                }
+            }
+
+            MessageBox.Show($"Moved {moved} audio files to '{movedFolderPath}'.", "Transcriptionless audio files removed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
 
 

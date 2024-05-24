@@ -369,6 +369,11 @@ namespace VoiceDatasetEditor
                 findAndReplace.BringToFront();
             }
         }
+
+        private void menuDeleteTranscriptionlessAudio_Click(object sender, EventArgs e)
+        {
+            VoiceListParser.DeleteTranscriptionlessAudio(voiceEntries, listFilePath);
+        }
         #endregion
 
         #region view_toolbar
@@ -474,5 +479,7 @@ namespace VoiceDatasetEditor
             LoadFirstPage();
         }
         #endregion
+
+        
     }
 }

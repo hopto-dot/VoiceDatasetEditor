@@ -55,6 +55,7 @@
             btnSave = new Button();
             lblLoaded = new Label();
             btnSaveAll = new Button();
+            menuDeleteTranscriptionlessAudio = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -85,7 +86,7 @@
             // menuLoadDataset
             // 
             menuLoadDataset.Name = "menuLoadDataset";
-            menuLoadDataset.Size = new Size(206, 30);
+            menuLoadDataset.Size = new Size(194, 30);
             menuLoadDataset.Text = "Load dataset";
             menuLoadDataset.ToolTipText = "Load a dataset to edit";
             menuLoadDataset.Click += menuLoadDataset_Click_1;
@@ -93,7 +94,7 @@
             // menuSaveDataset
             // 
             menuSaveDataset.Name = "menuSaveDataset";
-            menuSaveDataset.Size = new Size(206, 30);
+            menuSaveDataset.Size = new Size(194, 30);
             menuSaveDataset.Text = "Save dataset";
             menuSaveDataset.ToolTipText = "Save all transcriptions";
             menuSaveDataset.Click += menuSaveDataset_Click;
@@ -101,7 +102,7 @@
             // menuOpenListFile
             // 
             menuOpenListFile.Name = "menuOpenListFile";
-            menuOpenListFile.Size = new Size(206, 30);
+            menuOpenListFile.Size = new Size(194, 30);
             menuOpenListFile.Text = "Open list file";
             menuOpenListFile.ToolTipText = "Open .list file in default program";
             menuOpenListFile.Click += menuOpenListFile_Click;
@@ -110,7 +111,7 @@
             // 
             toolstripEdit.AutoToolTip = false;
             toolstripEdit.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolstripEdit.DropDownItems.AddRange(new ToolStripItem[] { menuFindAndReplace });
+            toolstripEdit.DropDownItems.AddRange(new ToolStripItem[] { menuFindAndReplace, menuDeleteTranscriptionlessAudio });
             toolstripEdit.Image = (Image)resources.GetObject("toolstripEdit.Image");
             toolstripEdit.ImageTransparentColor = Color.Magenta;
             toolstripEdit.Name = "toolstripEdit";
@@ -121,7 +122,7 @@
             // menuFindAndReplace
             // 
             menuFindAndReplace.Name = "menuFindAndReplace";
-            menuFindAndReplace.Size = new Size(222, 30);
+            menuFindAndReplace.Size = new Size(325, 30);
             menuFindAndReplace.Text = "Find and replace";
             menuFindAndReplace.ToolTipText = "Replace text in all transcriptions";
             menuFindAndReplace.Click += menuFindAndReplace_Click;
@@ -164,7 +165,7 @@
             // menuSortByFilename
             // 
             menuSortByFilename.Name = "menuSortByFilename";
-            menuSortByFilename.Size = new Size(206, 30);
+            menuSortByFilename.Size = new Size(200, 30);
             menuSortByFilename.Text = "File name";
             menuSortByFilename.ToolTipText = "Sort transcriptions by file names";
             menuSortByFilename.Click += menuSortByFilename_Click;
@@ -172,7 +173,7 @@
             // menuSortByTranscription
             // 
             menuSortByTranscription.Name = "menuSortByTranscription";
-            menuSortByTranscription.Size = new Size(206, 30);
+            menuSortByTranscription.Size = new Size(200, 30);
             menuSortByTranscription.Text = "Transcription";
             menuSortByTranscription.ToolTipText = "Sort transcriptions by transcription text";
             menuSortByTranscription.Click += menuSortByTranscription_Click;
@@ -180,7 +181,7 @@
             // menuSortByAudioLength
             // 
             menuSortByAudioLength.Name = "menuSortByAudioLength";
-            menuSortByAudioLength.Size = new Size(206, 30);
+            menuSortByAudioLength.Size = new Size(200, 30);
             menuSortByAudioLength.Text = "Audio length";
             menuSortByAudioLength.ToolTipText = "Sort transcriptions by audio length";
             menuSortByAudioLength.Click += menuSortByAudioLength_Click;
@@ -188,7 +189,7 @@
             // menuSortByReverse
             // 
             menuSortByReverse.Name = "menuSortByReverse";
-            menuSortByReverse.Size = new Size(206, 30);
+            menuSortByReverse.Size = new Size(200, 30);
             menuSortByReverse.Text = "Reverse order";
             menuSortByReverse.ToolTipText = "Reverse the order of the transcriptions";
             menuSortByReverse.Click += menuSortByReverse_Click;
@@ -302,6 +303,13 @@
             btnSaveAll.UseVisualStyleBackColor = true;
             btnSaveAll.Click += btnSaveAll_Click;
             // 
+            // menuDeleteTranscriptionlessAudio
+            // 
+            menuDeleteTranscriptionlessAudio.Name = "menuDeleteTranscriptionlessAudio";
+            menuDeleteTranscriptionlessAudio.Size = new Size(325, 30);
+            menuDeleteTranscriptionlessAudio.Text = "Delete transcriptionless audio";
+            menuDeleteTranscriptionlessAudio.Click += menuDeleteTranscriptionlessAudio_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
@@ -354,5 +362,6 @@
         private ToolStripMenuItem menuSortByAudioLength;
         private ToolStripMenuItem menuSortByReverse;
         private ToolStripMenuItem menuOpenListFile;
+        private ToolStripMenuItem menuDeleteTranscriptionlessAudio;
     }
 }

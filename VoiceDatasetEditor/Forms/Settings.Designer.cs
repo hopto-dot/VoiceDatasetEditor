@@ -38,6 +38,8 @@
             cbResizeEntries = new CheckBox();
             cbbVolumeBoost = new ComboBox();
             lblVolumeBoost = new Label();
+            lblDeleteConfirmation = new Label();
+            cbDeleteConfirmation = new CheckBox();
             SuspendLayout();
             // 
             // lblItemsPerPage
@@ -88,7 +90,7 @@
             // btnSave
             // 
             btnSave.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnSave.Location = new Point(282, 159);
+            btnSave.Location = new Point(282, 189);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(83, 30);
             btnSave.TabIndex = 4;
@@ -110,7 +112,7 @@
             // 
             lblResizeEntries.AutoSize = true;
             lblResizeEntries.Font = new Font("Segoe UI", 9.818182F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblResizeEntries.Location = new Point(12, 84);
+            lblResizeEntries.Location = new Point(12, 120);
             lblResizeEntries.Name = "lblResizeEntries";
             lblResizeEntries.Size = new Size(99, 20);
             lblResizeEntries.TabIndex = 6;
@@ -120,7 +122,7 @@
             // 
             cbResizeEntries.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cbResizeEntries.AutoSize = true;
-            cbResizeEntries.Location = new Point(226, 89);
+            cbResizeEntries.Location = new Point(226, 124);
             cbResizeEntries.Name = "cbResizeEntries";
             cbResizeEntries.Size = new Size(15, 14);
             cbResizeEntries.TabIndex = 7;
@@ -134,7 +136,7 @@
             cbbVolumeBoost.DropDownStyle = ComboBoxStyle.DropDownList;
             cbbVolumeBoost.FormattingEnabled = true;
             cbbVolumeBoost.Items.AddRange(new object[] { "0.5", "1.0", "2.0", "3.0", "4.0" });
-            cbbVolumeBoost.Location = new Point(226, 117);
+            cbbVolumeBoost.Location = new Point(226, 79);
             cbbVolumeBoost.Name = "cbbVolumeBoost";
             cbbVolumeBoost.Size = new Size(139, 27);
             cbbVolumeBoost.TabIndex = 8;
@@ -143,11 +145,31 @@
             // 
             lblVolumeBoost.AutoSize = true;
             lblVolumeBoost.Font = new Font("Segoe UI", 9.818182F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblVolumeBoost.Location = new Point(12, 119);
+            lblVolumeBoost.Location = new Point(12, 81);
             lblVolumeBoost.Name = "lblVolumeBoost";
             lblVolumeBoost.Size = new Size(203, 20);
             lblVolumeBoost.TabIndex = 9;
             lblVolumeBoost.Text = "Playback volume (temporary)";
+            // 
+            // lblDeleteConfirmation
+            // 
+            lblDeleteConfirmation.AutoSize = true;
+            lblDeleteConfirmation.Font = new Font("Segoe UI", 9.818182F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDeleteConfirmation.Location = new Point(12, 150);
+            lblDeleteConfirmation.Name = "lblDeleteConfirmation";
+            lblDeleteConfirmation.Size = new Size(142, 20);
+            lblDeleteConfirmation.TabIndex = 10;
+            lblDeleteConfirmation.Text = "Delete confirmation";
+            // 
+            // cbDeleteConfirmation
+            // 
+            cbDeleteConfirmation.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            cbDeleteConfirmation.AutoSize = true;
+            cbDeleteConfirmation.Location = new Point(226, 154);
+            cbDeleteConfirmation.Name = "cbDeleteConfirmation";
+            cbDeleteConfirmation.Size = new Size(15, 14);
+            cbDeleteConfirmation.TabIndex = 11;
+            cbDeleteConfirmation.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
@@ -155,7 +177,9 @@
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnClose;
-            ClientSize = new Size(377, 201);
+            ClientSize = new Size(377, 231);
+            Controls.Add(cbDeleteConfirmation);
+            Controls.Add(lblDeleteConfirmation);
             Controls.Add(lblVolumeBoost);
             Controls.Add(cbbVolumeBoost);
             Controls.Add(btnSave);
@@ -167,7 +191,7 @@
             Controls.Add(tbxItemsPerPage);
             Controls.Add(lblItemsPerPage);
             MaximizeBox = false;
-            MaximumSize = new Size(415, 245);
+            MaximumSize = new Size(415, 275);
             MinimizeBox = false;
             MinimumSize = new Size(395, 245);
             Name = "Settings";
@@ -192,5 +216,7 @@
         private CheckBox cbResizeEntries;
         private ComboBox cbbVolumeBoost;
         private Label lblVolumeBoost;
+        private Label lblDeleteConfirmation;
+        private CheckBox cbDeleteConfirmation;
     }
 }

@@ -15,7 +15,10 @@ namespace VoiceDatasetEditor.Classes
 
         public decimal VolumeBoost = 1;
 
+        public bool DeleteAskConfirmation = true;
+
         private static string _savePath = "";
+
         public static AppSettings Load(string filePath)
         {
             _savePath = filePath;

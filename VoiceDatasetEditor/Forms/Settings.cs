@@ -101,6 +101,7 @@ namespace VoiceDatasetEditor.Forms
             Form1.ApplicationSettings.ResizeEntries = cbResizeEntries.Checked;
 
             Form1.ApplicationSettings.Language = cbbLanguage.Text;
+            Form1.ApplicationSettings.DeleteAskConfirmation = cbDeleteConfirmation.Checked;
             Form1.ApplicationSettings.Save();
 
             Localise();
@@ -114,6 +115,7 @@ namespace VoiceDatasetEditor.Forms
             tbxItemsPerPage.Text = Form1.ApplicationSettings.ItemsPerPage.ToString();
             cbResizeEntries.Checked = Form1.ApplicationSettings.ResizeEntries;
             cbbVolumeBoost.Text = Form1.ApplicationSettings.VolumeBoost.ToString();
+            cbDeleteConfirmation.Checked = Form1.ApplicationSettings.DeleteAskConfirmation;
 
             Localise();
         }
@@ -127,6 +129,7 @@ namespace VoiceDatasetEditor.Forms
                 lblItemsPerPage.Text = "ページ当たりの項目数";
                 lblResizeEntries.Text = "エントリをリサイズ";
                 lblVolumeBoost.Text = "再生音量（一時的）";
+                lblDeleteConfirmation.Text = "削除時確認";
 
                 btnSave.Text = "保存";
             }
@@ -137,6 +140,7 @@ namespace VoiceDatasetEditor.Forms
                 lblItemsPerPage.Text = "Items per page";
                 lblResizeEntries.Text = "Resize entries";
                 lblVolumeBoost.Text = "Playback volume (temporary)";
+                lblDeleteConfirmation.Text = "Delete confirmation";
 
                 btnSave.Text = "Save";
             }
