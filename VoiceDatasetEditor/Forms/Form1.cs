@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Windows.Forms;
 using VoiceDatasetEditor.Forms;
+using VoiceDatasetEditor.Classes;
 
 namespace VoiceDatasetEditor
 {
@@ -73,12 +74,12 @@ namespace VoiceDatasetEditor
         }
 
         private const string SettingsFilePath = "settings.json";
-        public AppSettings Settings;
+        public static AppSettings Settings;
 
         List<VoiceEntry> voiceEntries = new List<VoiceEntry> { };
         int page = 0;
 
-        string listFilePath = "";
+        public static string listFilePath = "";
 
         #region form_events
         private void Form1_Shown(object sender, EventArgs e)
@@ -86,11 +87,15 @@ namespace VoiceDatasetEditor
             if (Settings.LastList != "")
             {
                 listFilePath = Settings.LastList;
-                voiceEntries = LoadVoiceEntries(Settings.LastList);
+                voiceEntries = VoiceListParser.LoadVoiceEntries(Settings.LastList);
 
                 if (voiceEntries.Count == 0)
                 {
                     return;
+                }
+                else
+                {
+                    updateLoadedCountLabels();
                 }
 
                 LoadPagination();
@@ -157,7 +162,7 @@ namespace VoiceDatasetEditor
                     replacements++;
                 }
                 voiceEntry.transcription = voiceEntry.transcription.Replace(find, replace);
-                SaveTranscription(Path.GetFileName(voiceEntry.filepath), voiceEntry.transcription.Replace(find, replace));
+                VoiceListParser.SaveTranscription(Path.GetFileName(voiceEntry.filepath), voiceEntry.transcription.Replace(find, replace), listFilePath);
             }
 
             foreach (VoiceFile voiceFile in flowAudioPanel.Controls)
@@ -195,14 +200,10 @@ namespace VoiceDatasetEditor
         #region buttons
         private void btnSaveAll_Click(object sender, EventArgs e)
         {
-            WriteSaveAllVoiceEntries();
+            VoiceListParser.WriteSaveAllVoiceEntries(voiceEntries, listFilePath);
         }
 
-        private void WriteSaveAllVoiceEntries()
-        {
-            var lines = voiceEntries.Select(entry => $"{Path.GetFileName(entry.filepath)}|{entry.speakerName}|{entry.language}|{entry.transcription}");
-            File.WriteAllLines(listFilePath, lines);
-        }
+        
 
         public void DeleteTranscription(VoiceEntry entry)
         {
@@ -210,7 +211,7 @@ namespace VoiceDatasetEditor
             voiceEntries.Remove(entry);
 
             // Update the list file
-            WriteSaveAllVoiceEntries();
+            VoiceListParser.WriteSaveAllVoiceEntries(voiceEntries, listFilePath);
 
             // LoadPagination();
         }
@@ -225,7 +226,7 @@ namespace VoiceDatasetEditor
 
             foreach (VoiceFile control in flowAudioPanel.Controls)
             {
-                SaveTranscription(Path.GetFileName(control.Entry.filepath), control.Entry.transcription);
+                VoiceListParser.SaveTranscription(Path.GetFileName(control.Entry.filepath), control.Entry.transcription, listFilePath);
             }
         }
 
@@ -298,7 +299,9 @@ namespace VoiceDatasetEditor
             {
                 listFilePath = openFileDialog.FileName;
 
-                voiceEntries = LoadVoiceEntries(listFilePath);
+                voiceEntries = VoiceListParser.LoadVoiceEntries(listFilePath);
+
+                updateLoadedCountLabels();
 
                 LoadPagination();
 
@@ -325,7 +328,7 @@ namespace VoiceDatasetEditor
 
             foreach (VoiceFile control in flowAudioPanel.Controls)
             {
-                SaveTranscription(Path.GetFileName(control.Entry.filepath), control.Entry.transcription);
+                VoiceListParser.SaveTranscription(Path.GetFileName(control.Entry.filepath), control.Entry.transcription, listFilePath);
             }
         }
         #endregion
@@ -410,13 +413,28 @@ namespace VoiceDatasetEditor
 
                 listFilePath = files[0];
 
-                voiceEntries = LoadVoiceEntries(files[0]);
+                voiceEntries = VoiceListParser.LoadVoiceEntries(files[0]);
+
+                updateLoadedCountLabels();
 
                 LoadPagination();
             }
         }
 
         #endregion
+
+        private void updateLoadedCountLabels()
+        {
+            if (Settings.Language == "EN")
+            {
+                lblLoaded.Text = $"Loaded {voiceEntries.Count} transcriptions";
+            }
+            else
+            {
+                lblLoaded.Text = $"{voiceEntries.Count}å¬ÇÃÉtÉ@ÉCÉãÇì«Ç›çûÇ›Ç‹ÇµÇΩ";
+            }
+            Text = $"Voice Dataset Editor - {listFilePath}";
+        }
 
         private void menuSortByFilename_Click(object sender, EventArgs e)
         {

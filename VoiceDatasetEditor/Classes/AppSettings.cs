@@ -3,7 +3,7 @@ using System;
 using System.Globalization;
 using System.IO;
 
-namespace VoiceDatasetEditor
+namespace VoiceDatasetEditor.Classes
 {
     public class AppSettings
     {
@@ -41,7 +41,7 @@ namespace VoiceDatasetEditor
                 double[] validValues = { 0.5, 1, 2, 3, 4 };
                 if (!Array.Exists(validValues, element => element == (double)settings.VolumeBoost))
                 {
-                    settings.VolumeBoost = (decimal)1;
+                    settings.VolumeBoost = 1;
                 }
 
 

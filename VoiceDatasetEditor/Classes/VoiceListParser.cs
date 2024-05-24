@@ -3,23 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
+using VoiceDatasetEditor.Forms;
 using NAudio.Wave;
 
-namespace VoiceDatasetEditor
+namespace VoiceDatasetEditor.Classes
 {
-    public class VoiceEntry
+    public static class VoiceListParser
     {
-        public string filepath = "";
-        public string speakerName = "";
-        public string language = "JP";
-        public string transcription = "";
-        
-        public decimal length = 0;
-    }
-
-    public partial class Form1 : Form
-    {
-        public List<VoiceEntry> LoadVoiceEntries(string listFilePath, string audioFilePath = "raw\\")
+        public static List<VoiceEntry> LoadVoiceEntries(string listFilePath, string audioFilePath = "raw\\")
         {
             var voiceEntries = new List<VoiceEntry>();
 
@@ -54,19 +46,17 @@ namespace VoiceDatasetEditor
                 voiceEntries.Add(voiceEntry);
             }
 
-            if (Settings.Language == "EN")
-            {
-                lblLoaded.Text = $"Loaded {voiceEntries.Count} transcriptions";
-            }
-            else
-            {
-                lblLoaded.Text = $"{voiceEntries.Count}個のファイルを読み込みました";
-            }
-            Text = $"Voice Dataset Editor - {listFilePath}";
+            
             return voiceEntries;
         }
 
-        public void SaveTranscription(string audioName, string newTranscription)
+        public static void WriteSaveAllVoiceEntries(List<VoiceEntry> voiceEntries, string listFilePath)
+        {
+            var lines = voiceEntries.Select(entry => $"{Path.GetFileName(entry.filepath)}|{entry.speakerName}|{entry.language}|{entry.transcription}");
+            File.WriteAllLines(listFilePath, lines);
+        }
+
+        public static void SaveTranscription(string audioName, string newTranscription, string listFilePath)
         {
             var lines = File.ReadAllLines(listFilePath).ToList();
             var updated = false;
@@ -96,7 +86,13 @@ namespace VoiceDatasetEditor
             File.WriteAllLines(listFilePath, lines);
         }
 
-        private decimal CalculateAudioLength(string audioFilePath)
+
+
+
+
+
+
+        private static decimal CalculateAudioLength(string audioFilePath)
         {
             // Determine the file extension
             string extension = Path.GetExtension(audioFilePath).ToLower();

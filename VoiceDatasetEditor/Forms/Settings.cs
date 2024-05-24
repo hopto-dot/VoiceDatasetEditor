@@ -46,8 +46,8 @@ namespace VoiceDatasetEditor.Forms
             }
             else
             {
-                tbxItemsPerPage.Text = MainForm.Settings.ItemsPerPage.ToString();
-                newItemsPerPage = MainForm.Settings.ItemsPerPage;
+                tbxItemsPerPage.Text = Form1.Settings.ItemsPerPage.ToString();
+                newItemsPerPage = Form1.Settings.ItemsPerPage;
             }
 
             if (volumeBoostIsNumeric)
@@ -62,34 +62,34 @@ namespace VoiceDatasetEditor.Forms
                     newVolumeBoost = 4;
                     cbbVolumeBoost.Text = "4";
                 }
-                MainForm.Settings.VolumeBoost = newVolumeBoost;
+                Form1.Settings.VolumeBoost = newVolumeBoost;
             }
             else
             {
-                cbbVolumeBoost.Text = MainForm.Settings.VolumeBoost.ToString();
-                newVolumeBoost = MainForm.Settings.VolumeBoost;
+                cbbVolumeBoost.Text = Form1.Settings.VolumeBoost.ToString();
+                newVolumeBoost = Form1.Settings.VolumeBoost;
             }
 
 
-            if (cbbLanguage.Text != MainForm.Settings.Language)
+            if (cbbLanguage.Text != Form1.Settings.Language)
             {
                 MainForm.Localise(cbbLanguage.Text);
             }
-            if (newItemsPerPage != MainForm.Settings.ItemsPerPage)
+            if (newItemsPerPage != Form1.Settings.ItemsPerPage)
             {
-                MainForm.Settings.ItemsPerPage = newItemsPerPage;
+                Form1.Settings.ItemsPerPage = newItemsPerPage;
                 MainForm.LoadFirstPage();
             }
-            else if (cbResizeEntries.Checked != MainForm.Settings.ResizeEntries) // <- note else if
+            else if (cbResizeEntries.Checked != Form1.Settings.ResizeEntries) // <- note else if
             {
-                MainForm.Settings.ResizeEntries = cbResizeEntries.Checked;
+                Form1.Settings.ResizeEntries = cbResizeEntries.Checked;
                 MainForm.LoadFirstPage();
             }
 
-            MainForm.Settings.ResizeEntries = cbResizeEntries.Checked;
+            Form1.Settings.ResizeEntries = cbResizeEntries.Checked;
 
-            MainForm.Settings.Language = cbbLanguage.Text;
-            MainForm.Settings.Save();
+            Form1.Settings.Language = cbbLanguage.Text;
+            Form1.Settings.Save();
 
             Localise();
 
@@ -98,17 +98,17 @@ namespace VoiceDatasetEditor.Forms
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            cbbLanguage.Text = MainForm.Settings.Language;
-            tbxItemsPerPage.Text = MainForm.Settings.ItemsPerPage.ToString();
-            cbResizeEntries.Checked = MainForm.Settings.ResizeEntries;
-            cbbVolumeBoost.Text = MainForm.Settings.VolumeBoost.ToString();
+            cbbLanguage.Text = Form1.Settings.Language;
+            tbxItemsPerPage.Text = Form1.Settings.ItemsPerPage.ToString();
+            cbResizeEntries.Checked = Form1.Settings.ResizeEntries;
+            cbbVolumeBoost.Text = Form1.Settings.VolumeBoost.ToString();
 
             Localise();
         }
 
         void Localise()
         {
-            if (MainForm.Settings.Language == "JP")
+            if (Form1.Settings.Language == "JP")
             {
                 Text = "設定";
                 lblLanguage.Text = "言語";

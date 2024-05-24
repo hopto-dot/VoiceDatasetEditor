@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using NAudio.Wave;
+using VoiceDatasetEditor.Classes;
 
 namespace VoiceDatasetEditor
 {
@@ -26,7 +27,7 @@ namespace VoiceDatasetEditor
         private void VoiceFile_Load(object sender, EventArgs e)
         {
             tbxTranscription.Text = Entry.transcription;
-            if (MainForm.Settings.Language == "JP")
+            if (Form1.Settings.Language == "JP")
             {
                 lblLength.Text = $"{Entry.length}秒";
                 btnPlay.Text = "再生";
@@ -52,7 +53,7 @@ namespace VoiceDatasetEditor
 
             var audioFile = new AudioFileReader(Entry.filepath);
             WaveOutEvent outputDevice = new WaveOutEvent();
-            var volumeProvider = new VolumeSampleProvider(audioFile.ToSampleProvider(), (float)MainForm.Settings.VolumeBoost);
+            var volumeProvider = new VolumeSampleProvider(audioFile.ToSampleProvider(), (float)Form1.Settings.VolumeBoost);
 
             outputDevice.Init(volumeProvider);
             outputDevice.Play();
@@ -61,7 +62,7 @@ namespace VoiceDatasetEditor
         private void btnSave_Click(object sender, EventArgs e)
         {
             string filename = Path.GetFileName(Entry.filepath);
-            MainForm.SaveTranscription(filename, Entry.transcription);
+            VoiceListParser.SaveTranscription(filename, Entry.transcription, Form1.listFilePath);
         }
 
         private void tbxTranscription_TextChanged(object sender, EventArgs e)
@@ -104,8 +105,8 @@ namespace VoiceDatasetEditor
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            string message = MainForm.Settings.Language == "JP" ? "このエントリを削除してもよろしいですか？" : "Are you sure you want to delete this entry?";
-            string title = MainForm.Settings.Language == "JP" ? "確認" : "Confirmation";
+            string message = Form1.Settings.Language == "JP" ? "このエントリを削除してもよろしいですか？" : "Are you sure you want to delete this entry?";
+            string title = Form1.Settings.Language == "JP" ? "確認" : "Confirmation";
             
             var result = MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 

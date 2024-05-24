@@ -34,7 +34,7 @@ namespace VoiceDatasetEditor.Forms
 
         private void Localise()
         {
-            if (Mainform.Settings.Language == "JP")
+            if (Form1.Settings.Language == "JP")
             {
                 btnCancel.Text = "キャンセル";
                 btnReplaceAll.Text = "すべて置換";
