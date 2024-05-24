@@ -27,7 +27,7 @@ voice_1.wav|Hestia|JP|炎は燃え続け、照らし続ける!
 - [X]  Application can be displayed in English or Japanese
 - [X]  The program is automatically displayed in Japanese if it detects your system language is Japanese
 - [X]  Search and replace
-- [ ]  Sort dataset entries by file name, transcription or audio length
+- [X]  Sort dataset entries by file name, transcription or audio length
 - [ ]  Trim leading and trailing characters
 - [ ]  Add display settings such as font size, item width and more
 - [ ]  Possible support for other display languages (if in demand)
