@@ -331,10 +331,7 @@ namespace VoiceDatasetEditor
                 return;
             }
 
-            foreach (VoiceFile control in flowAudioPanel.Controls)
-            {
-                VoiceListParser.SaveTranscription(Path.GetFileName(control.Entry.filepath), control.Entry.transcription, listFilePath);
-            }
+            VoiceListParser.WriteSaveAllVoiceEntries(voiceEntries, listFilePath);
         }
         #endregion
 
