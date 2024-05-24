@@ -27,7 +27,7 @@ namespace VoiceDatasetEditor
         private void VoiceFile_Load(object sender, EventArgs e)
         {
             tbxTranscription.Text = Entry.transcription;
-            if (Form1.Settings.Language == "JP")
+            if (Form1.ApplicationSettings.Language == "JP")
             {
                 lblLength.Text = $"{Entry.length}秒";
                 btnPlay.Text = "再生";
@@ -53,7 +53,7 @@ namespace VoiceDatasetEditor
 
             var audioFile = new AudioFileReader(Entry.filepath);
             WaveOutEvent outputDevice = new WaveOutEvent();
-            var volumeProvider = new VolumeSampleProvider(audioFile.ToSampleProvider(), (float)Form1.Settings.VolumeBoost);
+            var volumeProvider = new VolumeSampleProvider(audioFile.ToSampleProvider(), (float)Form1.ApplicationSettings.VolumeBoost);
 
             outputDevice.Init(volumeProvider);
             outputDevice.Play();
@@ -105,8 +105,8 @@ namespace VoiceDatasetEditor
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            string message = Form1.Settings.Language == "JP" ? "このエントリを削除してもよろしいですか？" : "Are you sure you want to delete this entry?";
-            string title = Form1.Settings.Language == "JP" ? "確認" : "Confirmation";
+            string message = Form1.ApplicationSettings.Language == "JP" ? "このエントリを削除してもよろしいですか？" : "Are you sure you want to delete this entry?";
+            string title = Form1.ApplicationSettings.Language == "JP" ? "確認" : "Confirmation";
             
             var result = MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 

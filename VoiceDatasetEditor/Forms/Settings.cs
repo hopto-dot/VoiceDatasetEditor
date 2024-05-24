@@ -13,8 +13,19 @@ namespace VoiceDatasetEditor.Forms
 {
     public partial class Settings : Form
     {
-        Form1 MainForm = new Form1();
-        public Settings(Form1 mainForm)
+        private static Settings _instance;
+        private Form1 MainForm;
+
+        public static Settings GetInstance(Form1 mainForm)
+        {
+            if (_instance == null || _instance.IsDisposed)
+            {
+                _instance = new Settings(mainForm);
+            }
+            return _instance;
+        }
+
+        private Settings(Form1 mainForm)
         {
             InitializeComponent();
             MainForm = mainForm;
@@ -46,8 +57,8 @@ namespace VoiceDatasetEditor.Forms
             }
             else
             {
-                tbxItemsPerPage.Text = Form1.Settings.ItemsPerPage.ToString();
-                newItemsPerPage = Form1.Settings.ItemsPerPage;
+                tbxItemsPerPage.Text = Form1.ApplicationSettings.ItemsPerPage.ToString();
+                newItemsPerPage = Form1.ApplicationSettings.ItemsPerPage;
             }
 
             if (volumeBoostIsNumeric)
@@ -62,34 +73,34 @@ namespace VoiceDatasetEditor.Forms
                     newVolumeBoost = 4;
                     cbbVolumeBoost.Text = "4";
                 }
-                Form1.Settings.VolumeBoost = newVolumeBoost;
+                Form1.ApplicationSettings.VolumeBoost = newVolumeBoost;
             }
             else
             {
-                cbbVolumeBoost.Text = Form1.Settings.VolumeBoost.ToString();
-                newVolumeBoost = Form1.Settings.VolumeBoost;
+                cbbVolumeBoost.Text = Form1.ApplicationSettings.VolumeBoost.ToString();
+                newVolumeBoost = Form1.ApplicationSettings.VolumeBoost;
             }
 
 
-            if (cbbLanguage.Text != Form1.Settings.Language)
+            if (cbbLanguage.Text != Form1.ApplicationSettings.Language)
             {
                 MainForm.Localise(cbbLanguage.Text);
             }
-            if (newItemsPerPage != Form1.Settings.ItemsPerPage)
+            if (newItemsPerPage != Form1.ApplicationSettings.ItemsPerPage)
             {
-                Form1.Settings.ItemsPerPage = newItemsPerPage;
+                Form1.ApplicationSettings.ItemsPerPage = newItemsPerPage;
                 MainForm.LoadFirstPage();
             }
-            else if (cbResizeEntries.Checked != Form1.Settings.ResizeEntries) // <- note else if
+            else if (cbResizeEntries.Checked != Form1.ApplicationSettings.ResizeEntries) // <- note else if
             {
-                Form1.Settings.ResizeEntries = cbResizeEntries.Checked;
+                Form1.ApplicationSettings.ResizeEntries = cbResizeEntries.Checked;
                 MainForm.LoadFirstPage();
             }
 
-            Form1.Settings.ResizeEntries = cbResizeEntries.Checked;
+            Form1.ApplicationSettings.ResizeEntries = cbResizeEntries.Checked;
 
-            Form1.Settings.Language = cbbLanguage.Text;
-            Form1.Settings.Save();
+            Form1.ApplicationSettings.Language = cbbLanguage.Text;
+            Form1.ApplicationSettings.Save();
 
             Localise();
 
@@ -98,17 +109,17 @@ namespace VoiceDatasetEditor.Forms
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            cbbLanguage.Text = Form1.Settings.Language;
-            tbxItemsPerPage.Text = Form1.Settings.ItemsPerPage.ToString();
-            cbResizeEntries.Checked = Form1.Settings.ResizeEntries;
-            cbbVolumeBoost.Text = Form1.Settings.VolumeBoost.ToString();
+            cbbLanguage.Text = Form1.ApplicationSettings.Language;
+            tbxItemsPerPage.Text = Form1.ApplicationSettings.ItemsPerPage.ToString();
+            cbResizeEntries.Checked = Form1.ApplicationSettings.ResizeEntries;
+            cbbVolumeBoost.Text = Form1.ApplicationSettings.VolumeBoost.ToString();
 
             Localise();
         }
 
         void Localise()
         {
-            if (Form1.Settings.Language == "JP")
+            if (Form1.ApplicationSettings.Language == "JP")
             {
                 Text = "設定";
                 lblLanguage.Text = "言語";

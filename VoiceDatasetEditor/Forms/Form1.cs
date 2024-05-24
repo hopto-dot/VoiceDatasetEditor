@@ -12,9 +12,9 @@ namespace VoiceDatasetEditor
         {
             InitializeComponent();
 
-            Settings = AppSettings.Load(SettingsFilePath);
+            ApplicationSettings = AppSettings.Load(SettingsFilePath);
 
-            Localise(Settings.Language);
+            Localise(ApplicationSettings.Language);
 
             flowAudioPanel.DragEnter += new DragEventHandler(flowAudioPanel_DragEnterEvent);
             flowAudioPanel.DragDrop += new DragEventHandler(flowAudioPanel_DragDropEvent);
@@ -22,8 +22,8 @@ namespace VoiceDatasetEditor
 
         public void Localise(string language)
         {
-            Settings.Language = language;
-            Settings.Save();
+            ApplicationSettings.Language = language;
+            ApplicationSettings.Save();
 
             if (language == "JP")
             {
@@ -74,7 +74,7 @@ namespace VoiceDatasetEditor
         }
 
         private const string SettingsFilePath = "settings.json";
-        public static AppSettings Settings;
+        public static AppSettings ApplicationSettings;
 
         List<VoiceEntry> voiceEntries = new List<VoiceEntry> { };
         int page = 0;
@@ -84,10 +84,10 @@ namespace VoiceDatasetEditor
         #region form_events
         private void Form1_Shown(object sender, EventArgs e)
         {
-            if (Settings.LastList != "")
+            if (ApplicationSettings.LastList != "")
             {
-                listFilePath = Settings.LastList;
-                voiceEntries = VoiceListParser.LoadVoiceEntries(Settings.LastList);
+                listFilePath = ApplicationSettings.LastList;
+                voiceEntries = VoiceListParser.LoadVoiceEntries(ApplicationSettings.LastList);
 
                 if (voiceEntries.Count == 0)
                 {
@@ -104,7 +104,7 @@ namespace VoiceDatasetEditor
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            if (Settings.ResizeEntries)
+            if (ApplicationSettings.ResizeEntries)
             {
                 foreach (VoiceFile voiceFile in flowAudioPanel.Controls)
                 {
@@ -118,9 +118,9 @@ namespace VoiceDatasetEditor
         {
             panelClientWidth = flowAudioPanel.ClientSize.Width;
 
-            lblPage.Text = $"{page + 1} / {(voiceEntries.Count / Settings.ItemsPerPage) + 1}";
+            lblPage.Text = $"{page + 1} / {(voiceEntries.Count / ApplicationSettings.ItemsPerPage) + 1}";
             flowAudioPanel.Controls.Clear();
-            for (int i = page * Settings.ItemsPerPage; i < (page * Settings.ItemsPerPage) + Settings.ItemsPerPage; i++)
+            for (int i = page * ApplicationSettings.ItemsPerPage; i < (page * ApplicationSettings.ItemsPerPage) + ApplicationSettings.ItemsPerPage; i++)
             {
                 if (i >= voiceEntries.Count)
                 {
@@ -142,7 +142,7 @@ namespace VoiceDatasetEditor
         {
             VoiceFile voiceFile = new VoiceFile(voiceEntry, this);
             flowAudioPanel.Controls.Add(voiceFile);
-            if (Settings.ResizeEntries)
+            if (ApplicationSettings.ResizeEntries)
             {
                 voiceFile.Width = panelClientWidth - flowAudioPanel.Padding.Horizontal - 25;
             }
@@ -171,7 +171,7 @@ namespace VoiceDatasetEditor
                 voiceFile.EditTranscription(oldTranscription.Replace(find, replace));
             }
 
-            if (Settings.Language == "EN")
+            if (ApplicationSettings.Language == "EN")
             {
                 MessageBox.Show($"{replacements} transcriptions were replaced", "Find and replace success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -232,7 +232,7 @@ namespace VoiceDatasetEditor
 
         void NoneLoaded()
         {
-            if (Settings.Language == "EN")
+            if (ApplicationSettings.Language == "EN")
             {
                 MessageBox.Show("You must load a dataset first.\n\nGo to [File -> Load dataset] then select a .list file", "No dataset loaded", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -252,9 +252,9 @@ namespace VoiceDatasetEditor
             //UpdateTranscriptionsWithPanel();
 
             page += 1;
-            if (page > voiceEntries.Count / Settings.ItemsPerPage)
+            if (page > voiceEntries.Count / ApplicationSettings.ItemsPerPage)
             {
-                page = voiceEntries.Count / Settings.ItemsPerPage;
+                page = voiceEntries.Count / ApplicationSettings.ItemsPerPage;
             }
             else
             {
@@ -290,9 +290,9 @@ namespace VoiceDatasetEditor
 
             openFileDialog.Filter = "List files (*.list)|*.list";
             openFileDialog.Title = "Open Dataset File";
-            if (Settings.LastList != "")
+            if (ApplicationSettings.LastList != "")
             {
-                openFileDialog.InitialDirectory = Settings.LastList;
+                openFileDialog.InitialDirectory = ApplicationSettings.LastList;
             }
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -307,13 +307,13 @@ namespace VoiceDatasetEditor
 
                 if (voiceEntries.Count <= 2000)
                 {
-                    Settings.LastList = listFilePath;
-                    Settings.Save();
+                    ApplicationSettings.LastList = listFilePath;
+                    ApplicationSettings.Save();
                 }
                 else
                 {
-                    Settings.LastList = "";
-                    Settings.Save();
+                    ApplicationSettings.LastList = "";
+                    ApplicationSettings.Save();
                 }
             }
         }
@@ -383,13 +383,17 @@ namespace VoiceDatasetEditor
 
         private void menuSettings_Click(object sender, EventArgs e)
         {
-            if (settingsMenu != null)
+            Settings settingsMenu = Settings.GetInstance(this);
+            if (!settingsMenu.Visible)
             {
-                settingsMenu.Close();
+                settingsMenu.Show();
             }
-            settingsMenu = new Settings(this);
-            settingsMenu.Show();
+            else
+            {
+                settingsMenu.BringToFront();
+            }
         }
+
         #endregion
 
         #region drag drop
@@ -425,7 +429,7 @@ namespace VoiceDatasetEditor
 
         private void updateLoadedCountLabels()
         {
-            if (Settings.Language == "EN")
+            if (ApplicationSettings.Language == "EN")
             {
                 lblLoaded.Text = $"Loaded {voiceEntries.Count} transcriptions";
             }
