@@ -193,7 +193,18 @@ namespace VoiceDatasetEditor
             }
         }
 
-
+        private void updateLoadedCountLabels()
+        {
+            if (ApplicationSettings.Language == "EN")
+            {
+                lblLoaded.Text = $"Loaded {voiceEntries.Count} transcriptions";
+            }
+            else
+            {
+                lblLoaded.Text = $"{voiceEntries.Count}個のファイルを読み込みました";
+            }
+            Text = $"Voice Dataset Editor - {listFilePath}";
+        }
 
         #endregion
 
@@ -201,19 +212,13 @@ namespace VoiceDatasetEditor
         private void btnSaveAll_Click(object sender, EventArgs e)
         {
             VoiceListParser.WriteSaveAllVoiceEntries(voiceEntries, listFilePath);
-        }
-
-        
+        }        
 
         public void DeleteTranscription(VoiceEntry entry)
         {
-            // Remove the entry from the list
             voiceEntries.Remove(entry);
 
-            // Update the list file
             VoiceListParser.WriteSaveAllVoiceEntries(voiceEntries, listFilePath);
-
-            // LoadPagination();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -242,26 +247,6 @@ namespace VoiceDatasetEditor
             }
         }
 
-        private void btnNextPage_Click(object sender, EventArgs e)
-        {
-            if (flowAudioPanel.Controls.Count == 0 || voiceEntries == null)
-            {
-                ShowNoDataLoadedMsgBox();
-                return;
-            }
-            //UpdateTranscriptionsWithPanel();
-
-            page += 1;
-            if (page > voiceEntries.Count / ApplicationSettings.ItemsPerPage)
-            {
-                page = voiceEntries.Count / ApplicationSettings.ItemsPerPage;
-            }
-            else
-            {
-                LoadPagination();
-            }
-        }
-
         private void btnPreviousPage_Click(object sender, EventArgs e)
         {
             if (flowAudioPanel.Controls.Count == 0 || voiceEntries == null)
@@ -281,6 +266,26 @@ namespace VoiceDatasetEditor
                 LoadPagination();
             }
         }
+        private void btnNextPage_Click(object sender, EventArgs e)
+        {
+            if (flowAudioPanel.Controls.Count == 0 || voiceEntries == null)
+            {
+                ShowNoDataLoadedMsgBox();
+                return;
+            }
+            //UpdateTranscriptionsWithPanel();
+
+            page += 1;
+            if (page > voiceEntries.Count / ApplicationSettings.ItemsPerPage)
+            {
+                page = voiceEntries.Count / ApplicationSettings.ItemsPerPage;
+            }
+            else
+            {
+                LoadPagination();
+            }
+        }
+        
         #endregion
 
         #region file_toolbar
@@ -334,7 +339,7 @@ namespace VoiceDatasetEditor
         #endregion
 
         #region edit_toolbar
-        FindAndReplace findAndReplace;
+        FindAndReplace? findAndReplace;
         private void menuFindAndReplace_Click(object sender, EventArgs e)
         {
             FindAndReplace findAndReplace = FindAndReplace.GetInstance(this);
@@ -382,7 +387,7 @@ namespace VoiceDatasetEditor
 
         #region settings_toolbar
 
-        Settings settingsMenu;
+        Settings? settingsMenu;
 
         private void menuSettings_Click(object sender, EventArgs e)
         {
@@ -430,19 +435,7 @@ namespace VoiceDatasetEditor
 
         #endregion
 
-        private void updateLoadedCountLabels()
-        {
-            if (ApplicationSettings.Language == "EN")
-            {
-                lblLoaded.Text = $"Loaded {voiceEntries.Count} transcriptions";
-            }
-            else
-            {
-                lblLoaded.Text = $"{voiceEntries.Count}個のファイルを読み込みました";
-            }
-            Text = $"Voice Dataset Editor - {listFilePath}";
-        }
-
+        #region menu_sort
         private void menuSortByFilename_Click(object sender, EventArgs e)
         {
             voiceEntries.Sort((x, y) => Path.GetFileName(x.filepath).CompareTo(Path.GetFileName(y.filepath)));
@@ -466,5 +459,6 @@ namespace VoiceDatasetEditor
             voiceEntries.Reverse();
             LoadFirstPage();
         }
+        #endregion
     }
 }
