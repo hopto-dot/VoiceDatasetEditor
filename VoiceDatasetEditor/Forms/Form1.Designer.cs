@@ -87,6 +87,7 @@
             menuLoadDataset.Name = "menuLoadDataset";
             menuLoadDataset.Size = new Size(206, 30);
             menuLoadDataset.Text = "Load dataset";
+            menuLoadDataset.ToolTipText = "Load a dataset to edit";
             menuLoadDataset.Click += menuLoadDataset_Click_1;
             // 
             // menuSaveDataset
@@ -94,6 +95,7 @@
             menuSaveDataset.Name = "menuSaveDataset";
             menuSaveDataset.Size = new Size(206, 30);
             menuSaveDataset.Text = "Save dataset";
+            menuSaveDataset.ToolTipText = "Save all transcriptions";
             menuSaveDataset.Click += menuSaveDataset_Click;
             // 
             // menuOpenListFile
@@ -101,10 +103,12 @@
             menuOpenListFile.Name = "menuOpenListFile";
             menuOpenListFile.Size = new Size(206, 30);
             menuOpenListFile.Text = "Open list file";
+            menuOpenListFile.ToolTipText = "Open .list file in default program";
             menuOpenListFile.Click += menuOpenListFile_Click;
             // 
             // toolstripEdit
             // 
+            toolstripEdit.AutoToolTip = false;
             toolstripEdit.DisplayStyle = ToolStripItemDisplayStyle.Text;
             toolstripEdit.DropDownItems.AddRange(new ToolStripItem[] { menuFindAndReplace });
             toolstripEdit.Image = (Image)resources.GetObject("toolstripEdit.Image");
@@ -119,10 +123,12 @@
             menuFindAndReplace.Name = "menuFindAndReplace";
             menuFindAndReplace.Size = new Size(222, 30);
             menuFindAndReplace.Text = "Find and replace";
+            menuFindAndReplace.ToolTipText = "Replace text in all transcriptions";
             menuFindAndReplace.Click += menuFindAndReplace_Click;
             // 
             // toolstripView
             // 
+            toolstripView.AutoToolTip = false;
             toolstripView.DisplayStyle = ToolStripItemDisplayStyle.Text;
             toolstripView.DropDownItems.AddRange(new ToolStripItem[] { menuRefresh, menuUnload, menuSortBy });
             toolstripView.Image = (Image)resources.GetObject("toolstripView.Image");
@@ -136,6 +142,7 @@
             menuRefresh.Name = "menuRefresh";
             menuRefresh.Size = new Size(212, 30);
             menuRefresh.Text = "Refresh";
+            menuRefresh.ToolTipText = "Refresh the dataset view";
             menuRefresh.Click += menuRefresh_Click;
             // 
             // menuUnload
@@ -143,6 +150,7 @@
             menuUnload.Name = "menuUnload";
             menuUnload.Size = new Size(212, 30);
             menuUnload.Text = "Unload dataset";
+            menuUnload.ToolTipText = "Unload dataset without saving";
             menuUnload.Click += menuUnload_Click;
             // 
             // menuSortBy
@@ -151,33 +159,38 @@
             menuSortBy.Name = "menuSortBy";
             menuSortBy.Size = new Size(212, 30);
             menuSortBy.Text = "Sort by";
+            menuSortBy.ToolTipText = "Reorder transcriptions";
             // 
             // menuSortByFilename
             // 
             menuSortByFilename.Name = "menuSortByFilename";
-            menuSortByFilename.Size = new Size(200, 30);
+            menuSortByFilename.Size = new Size(206, 30);
             menuSortByFilename.Text = "File name";
+            menuSortByFilename.ToolTipText = "Sort transcriptions by file names";
             menuSortByFilename.Click += menuSortByFilename_Click;
             // 
             // menuSortByTranscription
             // 
             menuSortByTranscription.Name = "menuSortByTranscription";
-            menuSortByTranscription.Size = new Size(200, 30);
+            menuSortByTranscription.Size = new Size(206, 30);
             menuSortByTranscription.Text = "Transcription";
+            menuSortByTranscription.ToolTipText = "Sort transcriptions by transcription text";
             menuSortByTranscription.Click += menuSortByTranscription_Click;
             // 
             // menuSortByAudioLength
             // 
             menuSortByAudioLength.Name = "menuSortByAudioLength";
-            menuSortByAudioLength.Size = new Size(200, 30);
+            menuSortByAudioLength.Size = new Size(206, 30);
             menuSortByAudioLength.Text = "Audio length";
+            menuSortByAudioLength.ToolTipText = "Sort transcriptions by audio length";
             menuSortByAudioLength.Click += menuSortByAudioLength_Click;
             // 
             // menuSortByReverse
             // 
             menuSortByReverse.Name = "menuSortByReverse";
-            menuSortByReverse.Size = new Size(200, 30);
+            menuSortByReverse.Size = new Size(206, 30);
             menuSortByReverse.Text = "Reverse order";
+            menuSortByReverse.ToolTipText = "Reverse the order of the transcriptions";
             menuSortByReverse.Click += menuSortByReverse_Click;
             // 
             // toolstripLanguage
@@ -205,6 +218,7 @@
             // 
             // toolstripSettings
             // 
+            toolstripSettings.AutoToolTip = false;
             toolstripSettings.DisplayStyle = ToolStripItemDisplayStyle.Text;
             toolstripSettings.Image = (Image)resources.GetObject("toolstripSettings.Image");
             toolstripSettings.ImageTransparentColor = Color.Magenta;
