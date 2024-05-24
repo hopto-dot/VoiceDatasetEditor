@@ -12,14 +12,25 @@ namespace VoiceDatasetEditor.Forms
 {
     public partial class FindAndReplace : Form
     {
-        Form1 Mainform;
-        public FindAndReplace(Form1 form1)
+        private static FindAndReplace _instance;
+        private Form1 MainForm;
+
+        public static FindAndReplace GetInstance(Form1 mainForm)
+        {
+            if (_instance == null || _instance.IsDisposed)
+            {
+                _instance = new FindAndReplace(mainForm);
+            }
+            return _instance;
+        }
+
+        private FindAndReplace(Form1 mainForm)
         {
             InitializeComponent();
-            Mainform = form1;
-
+            MainForm = mainForm;
             Localise();
         }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -28,7 +39,7 @@ namespace VoiceDatasetEditor.Forms
 
         private void btnReplaceAll_Click(object sender, EventArgs e)
         {
-            Mainform.FindAndReplace(tbxFind.Text, tbxReplace.Text);
+            MainForm.FindAndReplaceEntries(tbxFind.Text, tbxReplace.Text);
             Close();
         }
 

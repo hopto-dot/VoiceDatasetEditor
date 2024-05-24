@@ -152,7 +152,7 @@ namespace VoiceDatasetEditor
             }
         }
 
-        public void FindAndReplace(string find, string replace)
+        public void FindAndReplaceEntries(string find, string replace)
         {
             int replacements = 0;
             foreach (VoiceEntry voiceEntry in voiceEntries)
@@ -220,7 +220,7 @@ namespace VoiceDatasetEditor
         {
             if (flowAudioPanel.Controls.Count == 0)
             {
-                NoneLoaded();
+                ShowNoDataLoadedMsgBox();
                 return;
             }
 
@@ -230,7 +230,7 @@ namespace VoiceDatasetEditor
             }
         }
 
-        void NoneLoaded()
+        void ShowNoDataLoadedMsgBox()
         {
             if (ApplicationSettings.Language == "EN")
             {
@@ -246,7 +246,7 @@ namespace VoiceDatasetEditor
         {
             if (flowAudioPanel.Controls.Count == 0 || voiceEntries == null)
             {
-                NoneLoaded();
+                ShowNoDataLoadedMsgBox();
                 return;
             }
             //UpdateTranscriptionsWithPanel();
@@ -266,7 +266,7 @@ namespace VoiceDatasetEditor
         {
             if (flowAudioPanel.Controls.Count == 0 || voiceEntries == null)
             {
-                NoneLoaded();
+                ShowNoDataLoadedMsgBox();
                 return;
             }
             //UpdateTranscriptionsWithPanel();
@@ -322,7 +322,7 @@ namespace VoiceDatasetEditor
         {
             if (flowAudioPanel.Controls.Count == 0)
             {
-                NoneLoaded();
+                ShowNoDataLoadedMsgBox();
                 return;
             }
 
@@ -337,12 +337,15 @@ namespace VoiceDatasetEditor
         FindAndReplace findAndReplace;
         private void menuFindAndReplace_Click(object sender, EventArgs e)
         {
-            if (findAndReplace != null)
+            FindAndReplace findAndReplace = FindAndReplace.GetInstance(this);
+            if (!findAndReplace.Visible)
             {
-                findAndReplace.Close();
+                findAndReplace.Show();
             }
-            findAndReplace = new FindAndReplace(this);
-            findAndReplace.Show();
+            else
+            {
+                findAndReplace.BringToFront();
+            }
         }
         #endregion
 
