@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -47,6 +48,8 @@ namespace VoiceDatasetEditor.Forms
         {
             if (Form1.ApplicationSettings.Language == "JP")
             {
+                Text = "検索と置換";
+                
                 btnCancel.Text = "キャンセル";
                 btnReplaceAll.Text = "すべて置換";
 
