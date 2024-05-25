@@ -34,6 +34,7 @@
             menuLoadDataset = new ToolStripMenuItem();
             menuSaveDataset = new ToolStripMenuItem();
             menuOpenListFile = new ToolStripMenuItem();
+            menuOpenListFolder = new ToolStripMenuItem();
             toolstripEdit = new ToolStripDropDownButton();
             menuFindAndReplace = new ToolStripMenuItem();
             menuDeleteTranscriptionlessAudio = new ToolStripMenuItem();
@@ -45,6 +46,7 @@
             menuSortByTranscription = new ToolStripMenuItem();
             menuSortByAudioLength = new ToolStripMenuItem();
             menuSortByReverse = new ToolStripMenuItem();
+            menuCalculateTotalAudio = new ToolStripMenuItem();
             toolstripLanguage = new ToolStripDropDownButton();
             menuEnglish = new ToolStripMenuItem();
             menuJapanese = new ToolStripMenuItem();
@@ -56,7 +58,6 @@
             btnSave = new Button();
             lblLoaded = new Label();
             btnSaveAll = new Button();
-            menuCalculateTotalAudio = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -77,7 +78,7 @@
             // 
             toolstripFile.AutoToolTip = false;
             toolstripFile.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolstripFile.DropDownItems.AddRange(new ToolStripItem[] { menuLoadDataset, menuSaveDataset, menuOpenListFile });
+            toolstripFile.DropDownItems.AddRange(new ToolStripItem[] { menuLoadDataset, menuSaveDataset, menuOpenListFile, menuOpenListFolder });
             toolstripFile.Image = (Image)resources.GetObject("toolstripFile.Image");
             toolstripFile.ImageTransparentColor = Color.Magenta;
             toolstripFile.Name = "toolstripFile";
@@ -87,7 +88,7 @@
             // menuLoadDataset
             // 
             menuLoadDataset.Name = "menuLoadDataset";
-            menuLoadDataset.Size = new Size(194, 30);
+            menuLoadDataset.Size = new Size(219, 30);
             menuLoadDataset.Text = "Load dataset";
             menuLoadDataset.ToolTipText = "Load a dataset to edit";
             menuLoadDataset.Click += menuLoadDataset_Click_1;
@@ -95,7 +96,7 @@
             // menuSaveDataset
             // 
             menuSaveDataset.Name = "menuSaveDataset";
-            menuSaveDataset.Size = new Size(194, 30);
+            menuSaveDataset.Size = new Size(219, 30);
             menuSaveDataset.Text = "Save dataset";
             menuSaveDataset.ToolTipText = "Save all transcriptions";
             menuSaveDataset.Click += menuSaveDataset_Click;
@@ -103,10 +104,17 @@
             // menuOpenListFile
             // 
             menuOpenListFile.Name = "menuOpenListFile";
-            menuOpenListFile.Size = new Size(194, 30);
-            menuOpenListFile.Text = "Open list file";
+            menuOpenListFile.Size = new Size(219, 30);
+            menuOpenListFile.Text = "Open .list file";
             menuOpenListFile.ToolTipText = "Open .list file in default program";
             menuOpenListFile.Click += menuOpenListFile_Click;
+            // 
+            // menuOpenListFolder
+            // 
+            menuOpenListFolder.Name = "menuOpenListFolder";
+            menuOpenListFolder.Size = new Size(219, 30);
+            menuOpenListFolder.Text = "Open .list folder";
+            menuOpenListFolder.Click += menuOpenListFolder_Click;
             // 
             // toolstripEdit
             // 
@@ -201,6 +209,13 @@
             menuSortByReverse.Text = "Reverse order";
             menuSortByReverse.ToolTipText = "Reverse the order of the transcriptions";
             menuSortByReverse.Click += menuSortByReverse_Click;
+            // 
+            // menuCalculateTotalAudio
+            // 
+            menuCalculateTotalAudio.Name = "menuCalculateTotalAudio";
+            menuCalculateTotalAudio.Size = new Size(308, 30);
+            menuCalculateTotalAudio.Text = "Calculate total audio length";
+            menuCalculateTotalAudio.Click += menuCalculateTotalAudio_Click;
             // 
             // toolstripLanguage
             // 
@@ -311,13 +326,6 @@
             btnSaveAll.UseVisualStyleBackColor = true;
             btnSaveAll.Click += btnSaveAll_Click;
             // 
-            // menuCalculateTotalAudio
-            // 
-            menuCalculateTotalAudio.Name = "menuCalculateTotalAudio";
-            menuCalculateTotalAudio.Size = new Size(308, 30);
-            menuCalculateTotalAudio.Text = "Calculate total audio length";
-            menuCalculateTotalAudio.Click += menuCalculateTotalAudio_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
@@ -372,5 +380,6 @@
         private ToolStripMenuItem menuOpenListFile;
         private ToolStripMenuItem menuDeleteTranscriptionlessAudio;
         private ToolStripMenuItem menuCalculateTotalAudio;
+        private ToolStripMenuItem menuOpenListFolder;
     }
 }

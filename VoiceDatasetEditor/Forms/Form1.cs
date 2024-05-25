@@ -41,6 +41,7 @@ namespace VoiceDatasetEditor
                 menuLoadDataset.Text = "データセットを読み込む";
                 menuSaveDataset.Text = "データセットを保存する";
                 menuOpenListFile.Text = ".listファイルを開く";
+                menuOpenListFolder.Text = ".listのフォルダを開く";
 
                 menuRefresh.Text = "データセットの再読み込み";
                 menuUnload.Text = "データセットの読み込み解除";
@@ -71,7 +72,8 @@ namespace VoiceDatasetEditor
 
                 menuLoadDataset.Text = "Load dataset";
                 menuSaveDataset.Text = "Save dataset";
-                menuOpenListFile.Text = "Open list file";
+                menuOpenListFile.Text = "Open .list file";
+                menuOpenListFolder.Text = "Open .list folder";
 
                 menuRefresh.Text = "Refresh";
                 menuUnload.Text = "Unload dataset";
@@ -368,6 +370,19 @@ namespace VoiceDatasetEditor
                 MessageBox.Show("No list file is currently loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void menuOpenListFolder_Click(object sender, EventArgs e)
+        {
+            // Open the folder (getfolderpath of listFilePath) in explorer
+            if (!string.IsNullOrEmpty(listFilePath))
+            {
+                System.Diagnostics.Process.Start("explorer.exe", $"/select,\"{listFilePath}\"");
+            }
+            else
+            {
+                MessageBox.Show("No list file is currently loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         #endregion
 
         #region edit_toolbar
@@ -406,6 +421,7 @@ namespace VoiceDatasetEditor
             lblLoaded.Text = "";
             lblPage.Text = "";
             Text = "Voice Dataset Editor";
+            listFilePath = "";
         }
 
         private void menuCalculateTotalAudio_Click(object sender, EventArgs e)
@@ -418,7 +434,7 @@ namespace VoiceDatasetEditor
                     totalLength += voiceEntry.length;
                 }
             }
-            
+
             if (ApplicationSettings.Language == "EN")
             {
                 if (Math.Floor(totalLength / 3600) >= 1)
@@ -441,7 +457,7 @@ namespace VoiceDatasetEditor
                     MessageBox.Show($"合計音声長: {Math.Floor(totalLength / 60)}分{totalLength % 60}秒", "合計音声長", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            
+
         }
         #endregion
 
