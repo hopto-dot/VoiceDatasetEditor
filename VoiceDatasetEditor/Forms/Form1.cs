@@ -45,6 +45,13 @@ namespace VoiceDatasetEditor
                 menuRefresh.Text = "データセットの再読み込み";
                 menuUnload.Text = "データセットの読み込み解除";
                 menuFindAndReplace.Text = "検索と置換";
+                menuCalculateTotalAudio.Text = "合計音声長を計算する";
+
+                menuSortBy.Text = "ソート";
+                menuSortByFilename.Text = "ファイル名でソート";
+                menuSortByTranscription.Text = "文字起こしでソート";
+                menuSortByAudioLength.Text = "音声長でソート";
+                menuSortByReverse.Text = "逆順でソート";
 
                 if (flowAudioPanel.Controls.Count > 0)
                     lblLoaded.Text = $"{voiceEntries.Count}個のファイルを読み込みました";
@@ -69,6 +76,13 @@ namespace VoiceDatasetEditor
                 menuRefresh.Text = "Refresh";
                 menuUnload.Text = "Unload dataset";
                 menuFindAndReplace.Text = "Find and replace";
+                menuCalculateTotalAudio.Text = "Calculate total audio length";
+
+                menuSortBy.Text = "Sort by";
+                menuSortByFilename.Text = "File name";
+                menuSortByTranscription.Text = "Transcription";
+                menuSortByAudioLength.Text = "Audio length";
+                menuSortByReverse.Text = "Reverse order";
 
                 if (flowAudioPanel.Controls.Count > 0)
                     lblLoaded.Text = $"Loaded {voiceEntries.Count} transcriptions";
@@ -393,6 +407,42 @@ namespace VoiceDatasetEditor
             lblPage.Text = "";
             Text = "Voice Dataset Editor";
         }
+
+        private void menuCalculateTotalAudio_Click(object sender, EventArgs e)
+        {
+            decimal totalLength = 0;
+            foreach (VoiceEntry voiceEntry in voiceEntries)
+            {
+                if (voiceEntry.length > 0)
+                {
+                    totalLength += voiceEntry.length;
+                }
+            }
+            
+            if (ApplicationSettings.Language == "EN")
+            {
+                if (Math.Floor(totalLength / 3600) >= 1)
+                {
+                    MessageBox.Show($"Total audio length: {Math.Floor(totalLength / 3600)} hours and {Math.Round((totalLength % 3600) / 60, 1)} minutes", "Total audio length", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Total audio length: {Math.Floor(totalLength / 60)} minutes and {totalLength % 60} seconds", "Total audio length", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                if (Math.Floor(totalLength / 3600) >= 1)
+                {
+                    MessageBox.Show($"合計音声長: {Math.Floor(totalLength / 3600)}時間{Math.Round((totalLength % 3600) / 60, 1)}分", "合計音声長", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"合計音声長: {Math.Floor(totalLength / 60)}分{totalLength % 60}秒", "合計音声長", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            
+        }
         #endregion
 
         #region language_toolbar
@@ -480,6 +530,6 @@ namespace VoiceDatasetEditor
         }
         #endregion
 
-        
+
     }
 }

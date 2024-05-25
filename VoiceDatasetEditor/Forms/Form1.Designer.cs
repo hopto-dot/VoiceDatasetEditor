@@ -36,6 +36,7 @@
             menuOpenListFile = new ToolStripMenuItem();
             toolstripEdit = new ToolStripDropDownButton();
             menuFindAndReplace = new ToolStripMenuItem();
+            menuDeleteTranscriptionlessAudio = new ToolStripMenuItem();
             toolstripView = new ToolStripDropDownButton();
             menuRefresh = new ToolStripMenuItem();
             menuUnload = new ToolStripMenuItem();
@@ -55,7 +56,7 @@
             btnSave = new Button();
             lblLoaded = new Label();
             btnSaveAll = new Button();
-            menuDeleteTranscriptionlessAudio = new ToolStripMenuItem();
+            menuCalculateTotalAudio = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -127,11 +128,18 @@
             menuFindAndReplace.ToolTipText = "Replace text in all transcriptions";
             menuFindAndReplace.Click += menuFindAndReplace_Click;
             // 
+            // menuDeleteTranscriptionlessAudio
+            // 
+            menuDeleteTranscriptionlessAudio.Name = "menuDeleteTranscriptionlessAudio";
+            menuDeleteTranscriptionlessAudio.Size = new Size(325, 30);
+            menuDeleteTranscriptionlessAudio.Text = "Delete transcriptionless audio";
+            menuDeleteTranscriptionlessAudio.Click += menuDeleteTranscriptionlessAudio_Click;
+            // 
             // toolstripView
             // 
             toolstripView.AutoToolTip = false;
             toolstripView.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolstripView.DropDownItems.AddRange(new ToolStripItem[] { menuRefresh, menuUnload, menuSortBy });
+            toolstripView.DropDownItems.AddRange(new ToolStripItem[] { menuRefresh, menuUnload, menuSortBy, menuCalculateTotalAudio });
             toolstripView.Image = (Image)resources.GetObject("toolstripView.Image");
             toolstripView.ImageTransparentColor = Color.Magenta;
             toolstripView.Name = "toolstripView";
@@ -141,7 +149,7 @@
             // menuRefresh
             // 
             menuRefresh.Name = "menuRefresh";
-            menuRefresh.Size = new Size(212, 30);
+            menuRefresh.Size = new Size(308, 30);
             menuRefresh.Text = "Refresh";
             menuRefresh.ToolTipText = "Refresh the dataset view";
             menuRefresh.Click += menuRefresh_Click;
@@ -149,7 +157,7 @@
             // menuUnload
             // 
             menuUnload.Name = "menuUnload";
-            menuUnload.Size = new Size(212, 30);
+            menuUnload.Size = new Size(308, 30);
             menuUnload.Text = "Unload dataset";
             menuUnload.ToolTipText = "Unload dataset without saving";
             menuUnload.Click += menuUnload_Click;
@@ -158,7 +166,7 @@
             // 
             menuSortBy.DropDownItems.AddRange(new ToolStripItem[] { menuSortByFilename, menuSortByTranscription, menuSortByAudioLength, menuSortByReverse });
             menuSortBy.Name = "menuSortBy";
-            menuSortBy.Size = new Size(212, 30);
+            menuSortBy.Size = new Size(308, 30);
             menuSortBy.Text = "Sort by";
             menuSortBy.ToolTipText = "Reorder transcriptions";
             // 
@@ -303,12 +311,12 @@
             btnSaveAll.UseVisualStyleBackColor = true;
             btnSaveAll.Click += btnSaveAll_Click;
             // 
-            // menuDeleteTranscriptionlessAudio
+            // menuCalculateTotalAudio
             // 
-            menuDeleteTranscriptionlessAudio.Name = "menuDeleteTranscriptionlessAudio";
-            menuDeleteTranscriptionlessAudio.Size = new Size(325, 30);
-            menuDeleteTranscriptionlessAudio.Text = "Delete transcriptionless audio";
-            menuDeleteTranscriptionlessAudio.Click += menuDeleteTranscriptionlessAudio_Click;
+            menuCalculateTotalAudio.Name = "menuCalculateTotalAudio";
+            menuCalculateTotalAudio.Size = new Size(308, 30);
+            menuCalculateTotalAudio.Text = "Calculate total audio length";
+            menuCalculateTotalAudio.Click += menuCalculateTotalAudio_Click;
             // 
             // Form1
             // 
@@ -363,5 +371,6 @@
         private ToolStripMenuItem menuSortByReverse;
         private ToolStripMenuItem menuOpenListFile;
         private ToolStripMenuItem menuDeleteTranscriptionlessAudio;
+        private ToolStripMenuItem menuCalculateTotalAudio;
     }
 }
