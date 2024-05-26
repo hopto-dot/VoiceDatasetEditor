@@ -16,11 +16,13 @@ namespace VoiceDatasetEditor
     {
         public VoiceEntry Entry = new VoiceEntry();
         public Form1 MainForm = new Form1();
+        string originalTranscription = "";
         public VoiceFile(VoiceEntry voiceEntry, Form1 mainForm)
         {
             InitializeComponent();
             Entry = voiceEntry;
             MainForm = mainForm;
+            originalTranscription = voiceEntry.transcription;
         }
 
         private void VoiceFile_Load(object sender, EventArgs e)
@@ -70,6 +72,11 @@ namespace VoiceDatasetEditor
         private void tbxTranscription_TextChanged(object sender, EventArgs e)
         {
             Entry.transcription = tbxTranscription.Text;
+            if (tbxTranscription.Text != originalTranscription)
+            {
+                MainForm.unsavedChanges = true;
+                MainForm.updateLoadedCountLabels();
+            }
         }
 
         public void EditTranscription(string NewTranscription)

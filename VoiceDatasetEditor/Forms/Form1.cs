@@ -99,7 +99,9 @@ namespace VoiceDatasetEditor
 
         List<VoiceEntry> voiceEntries = new List<VoiceEntry> { };
         int page = 0;
-        
+
+        public bool unsavedChanges = false;
+
 
         public static string listFilePath = "";
 
@@ -299,6 +301,12 @@ namespace VoiceDatasetEditor
             {
                 MessageBox.Show($"{replacements}件の文字起こしが置換されました", "検索と置換が成功しました", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            if (replacements > 0)
+            {
+                unsavedChanges = true;
+                updateLoadedCountLabels();
+            }
         }
 
         public void UpdateTranscriptionsWithPanel()
@@ -313,7 +321,7 @@ namespace VoiceDatasetEditor
             }
         }
 
-        private void updateLoadedCountLabels()
+        public void updateLoadedCountLabels()
         {
             if (ApplicationSettings.Language == "EN")
             {
@@ -323,7 +331,14 @@ namespace VoiceDatasetEditor
             {
                 lblLoaded.Text = $"{voiceEntries.Count}個のファイルを読み込みました";
             }
-            Text = $"Voice Dataset Editor - {listFilePath}";
+            if (string.IsNullOrEmpty(listFilePath))
+            {
+                Text = "Voice Dataset Editor";
+            }
+            else
+            {
+                Text = $"Voice Dataset Editor - {listFilePath}" + (unsavedChanges ? "*" : "");
+            }
         }
 
         #endregion
@@ -332,13 +347,16 @@ namespace VoiceDatasetEditor
         private void btnSaveAll_Click(object sender, EventArgs e)
         {
             VoiceListParser.WriteSaveAllVoiceEntries(voiceEntries, listFilePath);
+            unsavedChanges = false;
+            updateLoadedCountLabels();
         }
 
+        // Update the methods that make changes to the data
         public void DeleteTranscription(VoiceEntry entry)
         {
             voiceEntries.Remove(entry);
-
-            VoiceListParser.WriteSaveAllVoiceEntries(voiceEntries, listFilePath);
+            unsavedChanges = true;
+            updateLoadedCountLabels();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -353,6 +371,8 @@ namespace VoiceDatasetEditor
             {
                 VoiceListParser.SaveTranscription(Path.GetFileName(control.Entry.filepath), control.Entry.transcription, listFilePath);
             }
+            unsavedChanges = false;
+            updateLoadedCountLabels();
         }
 
         void ShowNoDataLoadedMsgBox()

@@ -290,9 +290,9 @@
             // 
             lblPage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblPage.Font = new Font("Segoe UI", 11.7818184F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPage.Location = new Point(682, 39);
+            lblPage.Location = new Point(733, 39);
             lblPage.Name = "lblPage";
-            lblPage.Size = new Size(165, 33);
+            lblPage.Size = new Size(114, 33);
             lblPage.TabIndex = 4;
             lblPage.TextAlign = ContentAlignment.MiddleRight;
             // 
