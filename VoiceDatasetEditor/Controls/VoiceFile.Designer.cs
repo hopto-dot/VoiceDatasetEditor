@@ -50,6 +50,7 @@
             // 
             tbxTranscription.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tbxTranscription.Font = new Font("Segoe UI", 13.7454548F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbxTranscription.ImeMode = ImeMode.Hiragana;
             tbxTranscription.Location = new Point(82, 16);
             tbxTranscription.MaxLength = 5000;
             tbxTranscription.Name = "tbxTranscription";
