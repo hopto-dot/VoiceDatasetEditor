@@ -99,11 +99,13 @@ namespace VoiceDatasetEditor
 
         List<VoiceEntry> voiceEntries = new List<VoiceEntry> { };
         int page = 0;
-        WaveOutEvent outputDevice = new WaveOutEvent();
-        AudioFileReader audioFile;
+        
 
         public static string listFilePath = "";
 
+        #region audio
+        WaveOutEvent outputDevice = new WaveOutEvent();
+        AudioFileReader audioFile;
         public void PlayControlAudio(string filepath, bool playAudioStartingFromHalfWayThrough = false)
         {
             outputDevice.Stop();
@@ -112,7 +114,6 @@ namespace VoiceDatasetEditor
             outputDevice = new WaveOutEvent();
             var volumeProvider = new VolumeSampleProvider(audioFile.ToSampleProvider(), (float)ApplicationSettings.VolumeBoost);
 
-            // If playAudioStartingFromHalfWayThrough is true, set the position of audioFile to halfway through the audio.
             if (playAudioStartingFromHalfWayThrough)
             {
                 audioFile.Position = (long)(audioFile.Length * 0.5);
@@ -139,6 +140,65 @@ namespace VoiceDatasetEditor
             
             
             return false;
+        }
+
+        #endregion
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Control | Keys.Right))
+            {
+                btnNextPage_Click(this, new EventArgs());
+                return true;
+            }
+            else if (keyData == (Keys.Control | Keys.Left))
+            {
+                btnPreviousPage_Click(this, new EventArgs());
+                return true;
+            }
+            if (keyData == (Keys.Control | Keys.H))
+            {
+                menuFindAndReplace_Click(this, new EventArgs());
+                return true;
+            }
+            if (keyData == (Keys.Control | Keys.S))
+            {
+                btnSave_Click(this, new EventArgs());
+                return true;
+            }
+            if (keyData == (Keys.Control | Keys.O))
+            {
+                menuLoadDataset_Click_1(this, new EventArgs());
+                return true;
+            }
+            if (keyData == (Keys.Control | Keys.I))
+            {
+                menuSettings_Click(this, new EventArgs());
+                return true;
+            }
+            if (keyData == (Keys.Control | Keys.W))
+            {
+                // Ask user for confirmation in English or Japanese depending on setting
+                if (ApplicationSettings.Language == "EN")
+                {
+                    if (MessageBox.Show("Are you sure you want to unload the dataset?", "Unload dataset", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        menuUnload_Click(this, new EventArgs());
+                    }
+                }
+                else
+                {
+                    if (MessageBox.Show("データセットをアンロードしてもよろしいですか？", "データセットのアンロード", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        menuUnload_Click(this, new EventArgs());
+                    }
+                }
+                
+                menuUnload_Click(this, new EventArgs());
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData); // Call base method for default handling
         }
 
         #region form_events
