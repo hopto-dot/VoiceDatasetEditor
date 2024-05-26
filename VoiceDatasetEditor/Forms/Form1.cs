@@ -100,19 +100,45 @@ namespace VoiceDatasetEditor
         List<VoiceEntry> voiceEntries = new List<VoiceEntry> { };
         int page = 0;
         WaveOutEvent outputDevice = new WaveOutEvent();
+        AudioFileReader audioFile;
 
         public static string listFilePath = "";
 
-        public void PlayControlAudio(string filepath)
+        public void PlayControlAudio(string filepath, bool playAudioStartingFromHalfWayThrough = false)
         {
             outputDevice.Stop();
 
-            var audioFile = new AudioFileReader(filepath);
+            audioFile = new AudioFileReader(filepath);
             outputDevice = new WaveOutEvent();
             var volumeProvider = new VolumeSampleProvider(audioFile.ToSampleProvider(), (float)ApplicationSettings.VolumeBoost);
 
+            // If playAudioStartingFromHalfWayThrough is true, set the position of audioFile to halfway through the audio.
+            if (playAudioStartingFromHalfWayThrough)
+            {
+                audioFile.Position = (long)(audioFile.Length * 0.5);
+            }
+
             outputDevice.Init(volumeProvider);
             outputDevice.Play();
+        }
+
+
+        public Boolean StopControlAudio(string filepath)
+        {
+            if (audioFile == null) { return false; }
+            if (outputDevice.PlaybackState == PlaybackState.Playing) // If the user clicked "Stop" and audio is playing
+            {
+                if (audioFile.FileName == filepath) // and the same "Stop" button was clicked
+                {
+                    outputDevice.Stop(); // stop the audio
+                    audioFile = null;
+                    return true;
+                }
+            }
+
+            
+            
+            return false;
         }
 
         #region form_events

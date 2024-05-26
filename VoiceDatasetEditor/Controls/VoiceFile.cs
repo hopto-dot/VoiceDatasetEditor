@@ -47,8 +47,19 @@ namespace VoiceDatasetEditor
                 return;
             }
 
-            MainForm.PlayControlAudio(Entry.filepath);
+            if (MainForm.StopControlAudio(Entry.filepath))
+            {
+                return;
+            }
+
+            // Check if the Shift key is being held down.
+            bool playAudioStartingFromHalfWayThrough = Control.ModifierKeys == Keys.Shift;
+
+            MainForm.PlayControlAudio(Entry.filepath, playAudioStartingFromHalfWayThrough);
         }
+
+
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
