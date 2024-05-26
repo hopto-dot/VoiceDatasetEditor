@@ -36,7 +36,6 @@ namespace VoiceDatasetEditor
 
                 btnNextPage.Text = "次へ";
                 btnPreviousPage.Text = "前へ";
-                btnSave.Text = "ページを保存";
                 btnSaveAll.Text = "すべて保存";
 
                 menuLoadDataset.Text = "データセットを読み込む";
@@ -68,7 +67,6 @@ namespace VoiceDatasetEditor
 
                 btnNextPage.Text = "Next";
                 btnPreviousPage.Text = "Previous";
-                btnSave.Text = "Save page";
                 btnSaveAll.Text = "Save all";
 
                 menuLoadDataset.Text = "Load dataset";

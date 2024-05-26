@@ -55,7 +55,6 @@
             btnNextPage = new Button();
             btnPreviousPage = new Button();
             lblPage = new Label();
-            btnSave = new Button();
             lblLoaded = new Label();
             btnSaveAll = new Button();
             toolStrip1.SuspendLayout();
@@ -296,21 +295,10 @@
             lblPage.TabIndex = 4;
             lblPage.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // btnSave
-            // 
-            btnSave.Font = new Font("Segoe UI", 11.7818184F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSave.Location = new Point(130, 39);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(120, 33);
-            btnSave.TabIndex = 5;
-            btnSave.Text = "Save page";
-            btnSave.UseVisualStyleBackColor = true;
-            btnSave.Click += btnSave_Click;
-            // 
             // lblLoaded
             // 
             lblLoaded.AutoSize = true;
-            lblLoaded.Location = new Point(254, 46);
+            lblLoaded.Location = new Point(130, 48);
             lblLoaded.Name = "lblLoaded";
             lblLoaded.Size = new Size(0, 19);
             lblLoaded.TabIndex = 6;
@@ -333,7 +321,6 @@
             ClientSize = new Size(1048, 855);
             Controls.Add(btnSaveAll);
             Controls.Add(lblLoaded);
-            Controls.Add(btnSave);
             Controls.Add(lblPage);
             Controls.Add(btnPreviousPage);
             Controls.Add(btnNextPage);
@@ -359,7 +346,6 @@
         private Button btnPreviousPage;
         private Label lblPage;
         private ToolStripDropDownButton toolstripLanguage;
-        private Button btnSave;
         private ToolStripMenuItem menuFindAndReplace;
         private ToolStripDropDownButton toolstripFile;
         private ToolStripMenuItem menuLoadDataset;
