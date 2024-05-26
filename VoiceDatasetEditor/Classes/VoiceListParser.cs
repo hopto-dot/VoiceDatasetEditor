@@ -22,7 +22,7 @@ namespace VoiceDatasetEditor.Classes
                 {
                     if (Form1.ApplicationSettings.Language == "JP")
                     {
-                        MessageBox.Show("ファイルの各行には、'|'で区切られた4つの部分が含まれている必要があります。", ".list ファイルが無効です", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("ファイルの各行には、「|」で区切られた４つの部分が含まれている必要があります。", ".list ファイルが無効です", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
