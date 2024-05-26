@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using VoiceDatasetEditor.Forms;
 using VoiceDatasetEditor.Classes;
+using NAudio.Wave;
 
 namespace VoiceDatasetEditor
 {
@@ -98,8 +99,21 @@ namespace VoiceDatasetEditor
 
         List<VoiceEntry> voiceEntries = new List<VoiceEntry> { };
         int page = 0;
+        WaveOutEvent outputDevice = new WaveOutEvent();
 
         public static string listFilePath = "";
+
+        public void PlayControlAudio(string filepath)
+        {
+            outputDevice.Stop();
+
+            var audioFile = new AudioFileReader(filepath);
+            outputDevice = new WaveOutEvent();
+            var volumeProvider = new VolumeSampleProvider(audioFile.ToSampleProvider(), (float)ApplicationSettings.VolumeBoost);
+
+            outputDevice.Init(volumeProvider);
+            outputDevice.Play();
+        }
 
         #region form_events
         private void Form1_Shown(object sender, EventArgs e)
