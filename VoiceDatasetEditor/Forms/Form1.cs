@@ -618,6 +618,11 @@ namespace VoiceDatasetEditor
 
                 voiceEntries = VoiceListParser.LoadVoiceEntries(files[0]);
 
+                if (voiceEntries.Count == 0)
+                {
+                    return;
+                }
+                
                 updateLoadedCountLabels();
 
                 LoadPagination();
