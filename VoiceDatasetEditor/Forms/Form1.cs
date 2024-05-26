@@ -621,6 +621,17 @@ namespace VoiceDatasetEditor
                 updateLoadedCountLabels();
 
                 LoadPagination();
+
+                if (voiceEntries.Count <= 2000)
+                {
+                    ApplicationSettings.LastList = listFilePath;
+                    ApplicationSettings.Save();
+                }
+                else
+                {
+                    ApplicationSettings.LastList = "";
+                    ApplicationSettings.Save();
+                }
             }
         }
 
