@@ -307,18 +307,6 @@ namespace VoiceDatasetEditor
             }
         }
 
-        public void UpdateTranscriptionsWithPanel()
-        {
-            foreach (VoiceFile voiceFile in flowAudioPanel.Controls)
-            {
-                var entry = voiceEntries.FirstOrDefault(e => e.filepath == voiceFile.Entry.filepath);
-                if (entry != null)
-                {
-                    entry.transcription = voiceFile.Entry.transcription;
-                }
-            }
-        }
-
         public void updateLoadedCountLabels()
         {
             if (ApplicationSettings.Language == "EN")
