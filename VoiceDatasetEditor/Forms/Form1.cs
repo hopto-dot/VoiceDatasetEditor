@@ -204,13 +204,15 @@ namespace VoiceDatasetEditor
         #region form_events
         private void Form1_Shown(object sender, EventArgs e)
         {
-            if (ApplicationSettings.LastList != "")
+            if (ApplicationSettings.LastList != "" && ApplicationSettings.LastList.EndsWith(".list"))
             {
                 listFilePath = ApplicationSettings.LastList;
                 voiceEntries = VoiceListParser.LoadVoiceEntries(ApplicationSettings.LastList);
 
                 if (voiceEntries.Count == 0)
                 {
+                    ApplicationSettings.LastList = "";
+                    ApplicationSettings.Save();
                     return;
                 }
                 else

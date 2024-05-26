@@ -20,7 +20,15 @@ namespace VoiceDatasetEditor.Classes
                 var parts = line.Split('|');
                 if (parts.Length < 4)
                 {
-                    MessageBox.Show("Each line in the file must contain exactly four parts separated by '|'.", "Invalid .list file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (Form1.ApplicationSettings.Language == "JP")
+                    {
+                        MessageBox.Show("ファイルの各行には、'|'で区切られた4つの部分が含まれている必要があります。", ".list ファイルが無効です", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Each line in the file must contain exactly four parts separated by '|'.", "Invalid .list file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    
                     return new List<VoiceEntry>();
                 }
 
