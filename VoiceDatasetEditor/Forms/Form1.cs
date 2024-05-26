@@ -47,6 +47,7 @@ namespace VoiceDatasetEditor
                 menuUnload.Text = "データセットの読み込み解除";
                 menuFindAndReplace.Text = "検索と置換";
                 menuCalculateTotalAudio.Text = "合計音声長を計算する";
+                menuDeleteTranscriptionlessAudio.Text = "文字起こしがない音声を削除";
 
                 menuSortBy.Text = "ソート";
                 menuSortByFilename.Text = "ファイル名でソート";
@@ -78,6 +79,7 @@ namespace VoiceDatasetEditor
                 menuUnload.Text = "Unload dataset";
                 menuFindAndReplace.Text = "Find and replace";
                 menuCalculateTotalAudio.Text = "Calculate total audio length";
+                menuDeleteTranscriptionlessAudio.Text = "Delete transcriptionless audio";
 
                 menuSortBy.Text = "Sort by";
                 menuSortByFilename.Text = "File name";
