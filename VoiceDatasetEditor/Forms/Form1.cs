@@ -139,8 +139,8 @@ namespace VoiceDatasetEditor
                 }
             }
 
-            
-            
+
+
             return false;
         }
 
@@ -195,7 +195,7 @@ namespace VoiceDatasetEditor
                         menuUnload_Click(this, new EventArgs());
                     }
                 }
-                
+
                 menuUnload_Click(this, new EventArgs());
                 return true;
             }
@@ -509,6 +509,18 @@ namespace VoiceDatasetEditor
             }
         }
 
+        private void menuFilterDeleteTranscriptions_Click(object sender, EventArgs e)
+        {
+            DeleteWhere deleteWhere = DeleteWhere.GetInstance(this, voiceEntries);
+            if (!deleteWhere.Visible)
+            {
+                deleteWhere.Show();
+            }
+            else
+            {
+                deleteWhere.BringToFront();
+            }
+        }
         private void menuDeleteTranscriptionlessAudio_Click(object sender, EventArgs e)
         {
             VoiceListParser.DeleteTranscriptionlessAudio(voiceEntries, listFilePath);
@@ -626,7 +638,7 @@ namespace VoiceDatasetEditor
                 {
                     return;
                 }
-                
+
                 updateLoadedCountLabels();
 
                 LoadPagination();
@@ -673,5 +685,6 @@ namespace VoiceDatasetEditor
         #endregion
 
 
+        
     }
 }

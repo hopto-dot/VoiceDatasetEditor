@@ -57,6 +57,7 @@
             lblPage = new Label();
             lblLoaded = new Label();
             btnSaveAll = new Button();
+            menuFilterDeleteTranscriptions = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -119,7 +120,7 @@
             // 
             toolstripEdit.AutoToolTip = false;
             toolstripEdit.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolstripEdit.DropDownItems.AddRange(new ToolStripItem[] { menuFindAndReplace, menuDeleteTranscriptionlessAudio });
+            toolstripEdit.DropDownItems.AddRange(new ToolStripItem[] { menuFindAndReplace, menuDeleteTranscriptionlessAudio, menuFilterDeleteTranscriptions });
             toolstripEdit.Image = (Image)resources.GetObject("toolstripEdit.Image");
             toolstripEdit.ImageTransparentColor = Color.Magenta;
             toolstripEdit.Name = "toolstripEdit";
@@ -314,6 +315,13 @@
             btnSaveAll.UseVisualStyleBackColor = true;
             btnSaveAll.Click += btnSaveAll_Click;
             // 
+            // menuFilterDeleteTranscriptions
+            // 
+            menuFilterDeleteTranscriptions.Name = "menuFilterDeleteTranscriptions";
+            menuFilterDeleteTranscriptions.Size = new Size(325, 30);
+            menuFilterDeleteTranscriptions.Text = "Filter delete transcriptions";
+            menuFilterDeleteTranscriptions.Click += menuFilterDeleteTranscriptions_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
@@ -367,5 +375,6 @@
         private ToolStripMenuItem menuDeleteTranscriptionlessAudio;
         private ToolStripMenuItem menuCalculateTotalAudio;
         private ToolStripMenuItem menuOpenListFolder;
+        private ToolStripMenuItem menuFilterDeleteTranscriptions;
     }
 }
