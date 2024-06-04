@@ -26,6 +26,7 @@ namespace VoiceDatasetEditor.Forms
             _form1 = form1;
             _voiceEntries = voiceEntries;
             InitializeComponent();
+            Localise();
             cbbDeleteCondition.SelectedIndex = 0;
         }
 
@@ -49,25 +50,79 @@ namespace VoiceDatasetEditor.Forms
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            var selectedStrategy = strategies[cbbDeleteCondition.SelectedItem.ToString()];
-            string value = tbxValue.Text;
-
-            List<VoiceEntry> toRemove = new List<VoiceEntry>();
-            foreach (var entry in _voiceEntries)
+            if (string.IsNullOrEmpty(tbxValue.Text))
             {
-                if (selectedStrategy.IsMatch(entry, value))
+                string errorMessage = Form1.ApplicationSettings.Language == "JP" ? "値を入力してください" : "Please enter a value";
+                MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK);
+                return;
+            }
+            
+            string message = Form1.ApplicationSettings.Language == "JP" ? "選択した項目を削除してもよろしいですか？" : "Are you sure you want to delete the selected items?";
+            
+            var result = MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                var selectedStrategy = strategies[cbbDeleteCondition.SelectedItem.ToString()];
+                string value = tbxValue.Text;
+
+                List<VoiceEntry> toRemove = new List<VoiceEntry>();
+                foreach (var entry in _voiceEntries)
                 {
-                    //entry.transcription = "";
-                    toRemove.Add(entry);
+                    if (selectedStrategy.IsMatch(entry, value))
+                    {
+                        toRemove.Add(entry);
+                    }
                 }
-            }
+                int deleteCount = toRemove.Count;
 
-            foreach (var entry in toRemove)
+                foreach (var entry in toRemove)
+                {
+                    _voiceEntries.Remove(entry);
+                }
+                _form1.LoadFirstPage();
+
+                string successMessage = Form1.ApplicationSettings.Language == "JP" ? $"{deleteCount}件の文字起こしが削除されました。\n\nデータセットを保存するまで、削除された文字起こしは実際には削除されません。" : $"{deleteCount} transcriptions were deleted. \n\nNote: The deleted transcriptions are not actually removed from the list file until you save the dataset.";
+                MessageBox.Show(successMessage, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        void Localise()
+        {
+            if (Form1.ApplicationSettings.Language == "JP")
             {
-                _voiceEntries.Remove(entry);
-            }
+                Text = "Delete transcriptions";
 
-            _form1.LoadFirstPage();
+                lblDeleteTranscriptionsWhere.Text = "削除条件：";
+                btnDelete.Text = "削除";
+
+                strategies = new Dictionary<string, IConditionStrategy>
+                {
+                    { "音声の長さ <", new AudioLengthLessThanStrategy() },
+                    { "音声の長さ >", new AudioLengthGreaterThanStrategy() },
+                    { "テキストを含む", new ContainsTextStrategy() },
+                };
+
+                cbbDeleteCondition.Items.Clear();
+                cbbDeleteCondition.Items.AddRange(strategies.Keys.ToArray());
+            }
+            else
+            {
+                Text = "文字起こしを削除";
+
+                lblDeleteTranscriptionsWhere.Text = "Delete transcriptions where:";
+                btnDelete.Text = "Delete";
+
+                strategies = new Dictionary<string, IConditionStrategy>
+                {
+                    { "audio length <", new AudioLengthLessThanStrategy() },
+                    { "audio length >", new AudioLengthGreaterThanStrategy() },
+                    { "contains text", new ContainsTextStrategy() },
+                };
+
+                cbbDeleteCondition.Items.Clear();
+                cbbDeleteCondition.Items.AddRange(strategies.Keys.ToArray());
+            }
         }
     }
 
