@@ -39,8 +39,6 @@ namespace VoiceDatasetEditor.Forms
             return _instance;
         }
 
-
-
         private Dictionary<string, IConditionStrategy> strategies = new Dictionary<string, IConditionStrategy>
         {
             { "audio length <", new AudioLengthLessThanStrategy() },
@@ -96,7 +94,7 @@ namespace VoiceDatasetEditor.Forms
         {
             if (Form1.ApplicationSettings.Language == "JP")
             {
-                Text = "Delete transcriptions";
+                Text = "文字起こしを削除";
 
                 lblDeleteTranscriptionsWhere.Text = "削除条件：";
                 btnDelete.Text = "削除";
@@ -113,7 +111,7 @@ namespace VoiceDatasetEditor.Forms
             }
             else
             {
-                Text = "文字起こしを削除";
+                Text = "Filter delete transcriptions";
 
                 lblDeleteTranscriptionsWhere.Text = "Delete transcriptions where:";
                 btnDelete.Text = "Delete";
