@@ -1,7 +1,7 @@
 # VoiceDatasetEditor
 [日本語はこちら](README-JA.md)
 
-Voice Dataset Editor is an application for editing audio-text datasets with ease
+Voice Dataset Editor is an application for editing audio-text datasets with ease and has been localised into Japanese.
 
 [Latest release here](https://github.com/hopto-dot/VoiceDatasetEditor/releases/latest)
 
