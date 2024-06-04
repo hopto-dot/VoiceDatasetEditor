@@ -28,7 +28,7 @@ voice_1.wav|Hestia|JP|炎は燃え続け、照らし続ける!
 - [X]  The program is automatically displayed in Japanese if it detects your system language is Japanese
 - [X]  Search and replace
 - [X]  Sort dataset entries by file name, transcription or audio length
-- [X]  Move audio files out of the audio folder that have no corresponding transcription
+- [X]  Move audio files that have no corresponding transcription out of the audio folder
 - [ ]  Remove transcriptions based on conditions (audio length, contains text etc.)
 - [ ]  Trim leading and trailing characters
 - [ ]  Add display settings such as font size, item width and more
