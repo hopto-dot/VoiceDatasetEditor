@@ -56,26 +56,25 @@ namespace VoiceDatasetEditor.Forms
                 MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK);
                 return;
             }
-            
-            string message = Form1.ApplicationSettings.Language == "JP" ? "選択した項目を削除してもよろしいですか？" : "Are you sure you want to delete the selected items?";
-            
+
+            var selectedStrategy = strategies[cbbDeleteCondition.SelectedItem.ToString()];
+            string value = tbxValue.Text;
+
+            List<VoiceEntry> toRemove = new List<VoiceEntry>();
+            foreach (var entry in _voiceEntries)
+            {
+                if (selectedStrategy.IsMatch(entry, value))
+                {
+                    toRemove.Add(entry);
+                }
+            }
+            int deleteCount = toRemove.Count;
+
+            string message = Form1.ApplicationSettings.Language == "JP" ? $"選択した{deleteCount}件の項目を削除してもよろしいですか？" : $"This will delete {deleteCount} items. Are you sure you want to do this?";
             var result = MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {
-                var selectedStrategy = strategies[cbbDeleteCondition.SelectedItem.ToString()];
-                string value = tbxValue.Text;
-
-                List<VoiceEntry> toRemove = new List<VoiceEntry>();
-                foreach (var entry in _voiceEntries)
-                {
-                    if (selectedStrategy.IsMatch(entry, value))
-                    {
-                        toRemove.Add(entry);
-                    }
-                }
-                int deleteCount = toRemove.Count;
-
                 foreach (var entry in toRemove)
                 {
                     _voiceEntries.Remove(entry);
@@ -85,7 +84,13 @@ namespace VoiceDatasetEditor.Forms
                 string successMessage = Form1.ApplicationSettings.Language == "JP" ? $"{deleteCount}件の文字起こしが削除されました。\n\nデータセットを保存するまで、削除された文字起こしは実際には削除されません。" : $"{deleteCount} transcriptions were deleted. \n\nNote: The deleted transcriptions are not actually removed from the list file until you save the dataset.";
                 MessageBox.Show(successMessage, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            _form1.unsavedChanges = true;
+            _form1.updateLoadedCountLabels();
+
+            Close();
         }
+
 
         void Localise()
         {
