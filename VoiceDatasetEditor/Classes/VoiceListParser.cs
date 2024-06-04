@@ -97,12 +97,12 @@ namespace VoiceDatasetEditor.Classes
         public static void DeleteTranscriptionlessAudio(List<VoiceEntry> voiceEntries, string listFolderPath)
         {
             string movedFolderPath = Path.GetDirectoryName(listFolderPath) + "\\moved";
-            
+
             Directory.CreateDirectory(movedFolderPath);
 
             var audioFiles = Directory.GetFiles(Path.GetDirectoryName(listFolderPath) + "\\raw");
 
-            int moved = 0;
+            int toBeMoved = 0;
             foreach (var audioFile in audioFiles)
             {
                 string audioFileName = Path.GetFileName(audioFile);
@@ -111,14 +111,37 @@ namespace VoiceDatasetEditor.Classes
 
                 if (!voiceEntries.Any(ve => ve.filepath == audioFile))
                 {
-                    var movedFilePath = Path.Combine(movedFolderPath, Path.GetFileName(audioFile));
-                    File.Move(audioFile, movedFilePath);
-                    moved++;
+                    toBeMoved++;
                 }
             }
 
-            MessageBox.Show($"Moved {moved} audio files to '{movedFolderPath}'.", "Transcriptionless audio files removed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Ask for confirmation before moving files
+            string message = Form1.ApplicationSettings.Language == "JP"
+                ? $"本当に{toBeMoved}個の音声ファイルを移動しますか？"
+                : $"Are you sure you want to move {toBeMoved} audio files?";
+
+            DialogResult dialogResult = MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dialogResult == DialogResult.Yes)
+            {
+                int moved = 0;
+                foreach (var audioFile in audioFiles)
+                {
+                    string audioFileName = Path.GetFileName(audioFile);
+                    if (!audioFileName.EndsWith(".wav") && !audioFileName.EndsWith(".mp3"))
+                        continue;
+
+                    if (!voiceEntries.Any(ve => ve.filepath == audioFile))
+                    {
+                        var movedFilePath = Path.Combine(movedFolderPath, Path.GetFileName(audioFile));
+                        File.Move(audioFile, movedFilePath);
+                        moved++;
+                    }
+                }
+
+                MessageBox.Show($"Moved {moved} audio files to '{movedFolderPath}'.", "Transcriptionless audio files removed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
+
 
 
 
