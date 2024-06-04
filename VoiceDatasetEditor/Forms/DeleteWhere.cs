@@ -27,7 +27,7 @@ namespace VoiceDatasetEditor.Forms
             _voiceEntries = voiceEntries;
             InitializeComponent();
             Localise();
-            cbbDeleteCondition.SelectedIndex = 0;
+            cbbDeleteCondition.SelectedIndex = 2;
         }
 
         public static DeleteWhere GetInstance(Form1 mainForm, List<VoiceEntry> voiceEntries)
