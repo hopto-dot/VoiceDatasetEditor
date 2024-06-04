@@ -70,7 +70,7 @@ namespace VoiceDatasetEditor.Forms
             }
             int deleteCount = toRemove.Count;
 
-            string message = Form1.ApplicationSettings.Language == "JP" ? $"選択した{deleteCount}件の項目を削除してもよろしいですか？" : $"This will delete {deleteCount} items. Are you sure you want to do this?";
+            string message = Form1.ApplicationSettings.Language == "JP" ? $"{deleteCount}件の項目を削除してもよろしいですか？" : $"This will delete {deleteCount} items. Are you sure you want to do this?";
             var result = MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
