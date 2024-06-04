@@ -202,7 +202,6 @@ namespace VoiceDatasetEditor
             }
             if (keyData == (Keys.Control | Keys.R))
             {
-                // do `LoadFirstPage();` on confirmation with localisation - say this will revert all unsaved changes to the dataset
                 string message = ApplicationSettings.Language == "JP" ? "変更を破棄してデータセットを再読み込みしますか？" : "Are you sure you want to discard unsaved changes and reload the dataset?";
                 if (MessageBox.Show(message, "Reload dataset", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
