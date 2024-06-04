@@ -2,7 +2,7 @@
 
 [English]()
 
-Voice Dataset Editorは、音声テキストデータセットを編集するためのシンプルなプログラムです。
+Voice Dataset Editorは、音声テキストデータセットを編集するためのシンプルなプログラムで、日本語にローカライズされています。
 
 [最新リリースはこちら](https://github.com/hopto-dot/VoiceDatasetEditor/releases/latest)
 
