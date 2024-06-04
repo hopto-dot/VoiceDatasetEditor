@@ -198,7 +198,6 @@ namespace VoiceDatasetEditor
                     }
                 }
 
-                menuUnload_Click(this, new EventArgs());
                 return true;
             }
 
