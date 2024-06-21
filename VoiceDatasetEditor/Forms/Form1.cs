@@ -207,7 +207,7 @@ namespace VoiceDatasetEditor
                 {
                     voiceEntries = VoiceListParser.LoadVoiceEntries(listFilePath);
                     LoadFirstPage();
-                    
+
                     unsavedChanges = false;
                     updateLoadedCountLabels();
                 }
@@ -698,6 +698,6 @@ namespace VoiceDatasetEditor
         #endregion
 
 
-        
+
     }
 }

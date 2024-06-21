@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using VoiceDatasetEditor.Classes;
+using VoiceDatasetEditor.Forms;
 
 namespace VoiceDatasetEditor
 {
@@ -59,8 +60,6 @@ namespace VoiceDatasetEditor
 
             MainForm.PlayControlAudio(Entry.filepath, playAudioStartingFromHalfWayThrough);
         }
-
-
 
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -114,7 +113,8 @@ namespace VoiceDatasetEditor
         {
             if (e.Button == MouseButtons.Right)
             {
-                MessageBox.Show("Right button clicked!");
+                EditAudio editAudio = new EditAudio(Entry.filepath);
+                editAudio.Show();
             }
         }
 

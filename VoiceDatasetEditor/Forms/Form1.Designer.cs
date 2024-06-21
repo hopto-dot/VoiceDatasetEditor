@@ -38,6 +38,7 @@
             toolstripEdit = new ToolStripDropDownButton();
             menuFindAndReplace = new ToolStripMenuItem();
             menuDeleteTranscriptionlessAudio = new ToolStripMenuItem();
+            menuFilterDeleteTranscriptions = new ToolStripMenuItem();
             toolstripView = new ToolStripDropDownButton();
             menuRefresh = new ToolStripMenuItem();
             menuUnload = new ToolStripMenuItem();
@@ -57,7 +58,6 @@
             lblPage = new Label();
             lblLoaded = new Label();
             btnSaveAll = new Button();
-            menuFilterDeleteTranscriptions = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -142,6 +142,13 @@
             menuDeleteTranscriptionlessAudio.Size = new Size(325, 30);
             menuDeleteTranscriptionlessAudio.Text = "Delete transcriptionless audio";
             menuDeleteTranscriptionlessAudio.Click += menuDeleteTranscriptionlessAudio_Click;
+            // 
+            // menuFilterDeleteTranscriptions
+            // 
+            menuFilterDeleteTranscriptions.Name = "menuFilterDeleteTranscriptions";
+            menuFilterDeleteTranscriptions.Size = new Size(325, 30);
+            menuFilterDeleteTranscriptions.Text = "Filter delete transcriptions";
+            menuFilterDeleteTranscriptions.Click += menuFilterDeleteTranscriptions_Click;
             // 
             // toolstripView
             // 
@@ -314,13 +321,6 @@
             btnSaveAll.Text = "Save all";
             btnSaveAll.UseVisualStyleBackColor = true;
             btnSaveAll.Click += btnSaveAll_Click;
-            // 
-            // menuFilterDeleteTranscriptions
-            // 
-            menuFilterDeleteTranscriptions.Name = "menuFilterDeleteTranscriptions";
-            menuFilterDeleteTranscriptions.Size = new Size(325, 30);
-            menuFilterDeleteTranscriptions.Text = "Filter delete transcriptions";
-            menuFilterDeleteTranscriptions.Click += menuFilterDeleteTranscriptions_Click;
             // 
             // Form1
             // 
