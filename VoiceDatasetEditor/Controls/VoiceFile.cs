@@ -85,14 +85,14 @@ namespace VoiceDatasetEditor
             tbxTranscription.Text = NewTranscription;
         }
 
-        
+
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             string message = Form1.ApplicationSettings.Language == "JP" ? "このエントリを削除してもよろしいですか？" : "Are you sure you want to delete this entry?";
             string title = Form1.ApplicationSettings.Language == "JP" ? "確認" : "Confirmation";
 
-            DialogResult result = DialogResult.None;            
+            DialogResult result = DialogResult.None;
             if (!Form1.ApplicationSettings.DeleteAskConfirmation)
             {
                 MainForm.DeleteTranscription(Entry);
@@ -109,5 +109,14 @@ namespace VoiceDatasetEditor
                 Dispose();
             }
         }
+
+        private void btnPlay_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                MessageBox.Show("Right button clicked!");
+            }
+        }
+
     }
 }

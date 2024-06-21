@@ -45,6 +45,7 @@
             btnPlay.Text = "Play";
             btnPlay.UseVisualStyleBackColor = true;
             btnPlay.Click += btnPlay_Click;
+            btnPlay.MouseDown += btnPlay_MouseDown;
             // 
             // tbxTranscription
             // 
