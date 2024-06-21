@@ -137,8 +137,6 @@ namespace VoiceDatasetEditor.Forms
 
             outputDevice.Init(volumeProvider);
             outputDevice.Play();
-
-
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
@@ -159,7 +157,14 @@ namespace VoiceDatasetEditor.Forms
             {
                 audioFile.Dispose();
             }
-            File.Delete(tempFilePath);
+
+            try
+            {
+                File.Delete(tempFilePath);
+            } catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to delete temp file: {ex.Message}\n\nIt's a good idea to save now as there might be a later crash caused by this error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
