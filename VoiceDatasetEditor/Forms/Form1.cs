@@ -241,7 +241,7 @@ namespace VoiceDatasetEditor
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            if (ApplicationSettings.ResizeEntries)
+            if (ApplicationSettings != null && ApplicationSettings.ResizeEntries)
             {
                 foreach (VoiceFile voiceFile in flowAudioPanel.Controls)
                 {

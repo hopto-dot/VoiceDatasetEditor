@@ -15,6 +15,8 @@ namespace VoiceDatasetEditor.Classes
         {
             var voiceEntries = new List<VoiceEntry>();
 
+            if (!File.Exists(listFilePath)) return new List<VoiceEntry>();
+
             foreach (var line in File.ReadLines(listFilePath))
             {
                 var parts = line.Split('|');
